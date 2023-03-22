@@ -1,0 +1,7 @@
+{
+    "courses": [
+        {"id": 1, "name": "Front-end", "author": "F8"},
+        {"id": 2, "name": "Back-end", "author": "F9"},
+        {"id": 3, "name": "Deff-ops", "author": "F10"}
+    ]
+}

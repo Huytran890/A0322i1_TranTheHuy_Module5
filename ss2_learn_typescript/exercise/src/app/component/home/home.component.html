@@ -1,0 +1,83 @@
+<div class="box">
+    <p class="text">Keep it real!</p>
+    <p class="text">Keep it raw!</p>
+    <p class="text">My id is {{student.id}}</p>
+    <p class="text">Hello my name is {{student.name}}</p>
+    <!-- <input type="text" [value]="student.name" #defaultName> -->
+    <input type="text" [(ngModel)]="student.name" #defaultName>
+    <button (click) ="resetName(defaultName.value)">Reset name</button>
+    
+
+    <!-- <div class="text">
+        <p>Tuổi của bạn là: {{student.age}}</p>
+        <input type="number" [value]="student.age" [(ngModel)]="student.age" #defaultAge>
+        <p *ngIf="student.age > 18">Bạn đã trưởng thành rồi!</p>
+        <p *ngIf="student.age <= 18">Bạn còn quá non!</p>
+    </div> -->
+    
+    <!-- using ng-template-->
+    <!-- <p>Tuổi của bạn là: {{student.age}}</p>
+    <input type="number" [value]="student.age" [(ngModel)]="student.age">
+    <div class="text" *ngIf="student.age <= 18; then young else old"></div>
+        <ng-template #young><h2>Bạn còn quá non!</h2></ng-template>
+        <ng-template #old><h2>Bạn đã trưởng thành rồi!</h2></ng-template> -->
+
+    <!--ng-for-->
+    <!-- <h3>Đây là một danh sách tên</h3>
+    <div *ngFor="let student of listStudentName">
+        <li>{{student}}</li>
+    </div> -->
+
+    <!-- <h2>List Student</h2>
+    <table id="table">
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Current Money</th>
+            <th>Email</th>
+        </tr>
+        <tr *ngFor="let student of listStudent" [ngClass]="{'red-color': student.gender === 2}">
+            <td><p>{{student.name}}</p></td>
+            <td>
+                <p *ngIf="student.gender === 0">Nam</p>
+                <p *ngIf="student.gender === 1">Nữ</p>
+                <p *ngIf="student.gender === 2">LGBT</p>
+            </td>
+            <td><p>{{student.currentMoney | currency: 'USD':'symbol':'1.0'}}</p></td>
+            <td><p>{{student.email}}</p></td>
+        </tr>
+    </table> -->
+    <h3>Thành Phố</h3>
+    <select id="city" (change)="changeCity($event)">
+        <option *ngFor="let c of data" value="{{c.city}}">
+            {{c.city}}
+        </option>
+    </select>
+    <br>
+    <h3>Quận / Huyện</h3>
+    <select id="distric">
+        <option *ngFor="let district of tempDistrict" value="{{district}}">
+            {{district}}
+        </option>
+    </select>
+
+    <!-- <h3 appHighLight>HightLight me please!</h3>
+    <h3 [appHighLight]="myColor">HightLight me please!</h3>
+    <h3 [appHighLight]="'orange'">HightLight me please!</h3>
+
+
+    <h3 appHighLight="purple">Counter: {{counter}}</h3>
+    <h3 appHighLight="purple">Calculate Counter: {{calculate}}</h3> -->
+
+
+    <!--Reactive Form-->
+    <h3>Reactive Form</h3>
+    <Form [formGroup]= "fomrData" (ngSubmit)="onSubmit()">
+        <p>Name: </p> 
+        <input formControlName="name" type="text">
+        <p>Age: </p>
+        <input formControlName="age" type="numer">
+        <button>Submit</button>
+    </Form>
+</div>
+
