@@ -1,0 +1,17 @@
+<div>
+    <label>Input number 1: </label>
+    <input #number1 type="number">
+  </div>
+  <div>
+    <label>Input number 2: </label>
+    <input #number2 type="number">
+  </div>
+  <div>
+    <button type="submit" #result1 value="+" (click)="operation(number1.value, number2.value ,result1.value)">Addition</button>
+    <button type="submit" #result2 value="-" (click)="operation(number1.value, number2.value ,result2.value)">Subtraction</button>
+    <button type="submit" #result3 value="*" (click)="operation(number1.value, number2.value ,result3.value)">Multiplication</button>
+    <button type="submit" #result4 value="/" (click)="operation(number1.value, number2.value ,result4.value)">Division</button>
+  </div>
+  <div style="color: blue">
+    Result:<span>{{result}}</span>
+  </div>

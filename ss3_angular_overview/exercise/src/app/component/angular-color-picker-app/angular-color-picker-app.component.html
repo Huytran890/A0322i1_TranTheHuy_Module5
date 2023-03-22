@@ -1,0 +1,20 @@
+<div style="margin: 30px">
+    <h2 style="color: slateblue">Change color</h2>
+  </div>
+  <div style="margin: 30px">
+    <label>Input content: </label>
+    <input style="height: 300px" class="form-control" type="color" #element (change)="changedCharacter(element.value)"/>
+  </div>
+  <div style="margin: 30px">
+    <label>Select color: </label>
+    <button class="btn btn-danger" type="submit" name="color" value="red" (click)="changedColorValue($event)">Red</button>
+    <button class="btn btn-warning" type="submit" name="color" value="yellow" (click)="changedColorValue($event)">Yellow</button>
+    <button class="btn btn-success" type="submit" name="color" value="green" (click)="changedColorValue($event)">Green</button>
+    <button class="btn btn-light" type="submit" name="color" value="white" (click)="changedColorValue($event)">White</button>
+    <button class="btn btn-primary" type="submit" name="color" value="blue" (click)="changedColorValue($event)">Blue</button>
+    <button class="btn btn-dark" type="submit" name="color" value="black" (click)="changedColorValue($event)">Black</button>
+    <button class="btn btn-secondary" type="submit" name="color" value="silver" (click)="changedColorValue($event)">Silver</button>
+  </div>
+  <div style="margin: 30px">
+    Result:<h3 class="output" [ngStyle]="{'color': colors}"> {{character}} </h3>
+  </div>
