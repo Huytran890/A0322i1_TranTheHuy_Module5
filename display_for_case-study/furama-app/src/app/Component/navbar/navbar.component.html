@@ -1,0 +1,54 @@
+
+<section class="narBarSection">
+    <header class="header flex">
+        <div class="logoDiv">
+            <a href="#" class="logo flex">
+                <h1><mat-icon class="icon">travel_explore</mat-icon>  Travel.</h1>
+            </a>
+        </div>
+
+        <div [ngClass]="active">
+            <ul class="navLists flex">
+                <li class="navItem">
+                    <a href="" class="navLink">Home</a>
+                </li>
+
+                <li class="navItem">
+                    <a href="" class="navLink">Packages</a>
+                </li>
+
+                <li class="navItem">
+                    <a href="" class="navLink">Shop</a>
+                </li>
+
+                <li class="navItem">
+                    <a href="" class="navLink">About</a>
+                </li>
+
+                <li class="navItem">
+                    <a href="" class="navLink">Pages</a>
+                </li>
+
+                <li class="navItem">
+                    <a href="" class="navLink">News</a>
+                </li>
+
+                <li class="navItem">
+                    <a href="" class="navLink">Contact</a>
+                </li>
+                <button class="btn">
+                    <a href="#">BOOK NOW</a>
+                </button>
+            </ul>
+
+            <div (click)="removeNav()" class="closeNavBar">
+                <mat-icon class="icon">cancel</mat-icon>
+            </div>
+            
+        </div>
+
+        <div (click)="showNav()" class="toggleNavbar">
+            <mat-icon class="icon">apps</mat-icon>
+        </div>
+    </header>
+</section>

@@ -1,0 +1,57 @@
+<section class="home">
+  <div class="overlay"></div>
+  <video muted autoplay loop [src]="videoUrl" type="video/mp4"></video>
+
+  <div class="homeContent container">
+    <div class="textDiv">
+        <span data-aos="fade-up" class="smallText">Our Packages</span>
+        <h1 data-aos="fade-up" class="homeTitle">Search your Holiday</h1>
+    </div>
+
+    <div data-aos="fade-up" class="cardDiv grid">
+        <div class="destinationInput">
+            <label for="city">Search your destination:</label>
+            <div class="input flex">
+                <input id="city" type="text" placeholder="Enter name here....">
+                <mat-icon class="icon"> location_on</mat-icon>
+            </div>
+        </div>
+
+        <div class="dateInput">
+            <label for="date">Select your date:</label>
+            <div class="input flex">
+                <input id="date" type="date">
+            </div>
+        </div>
+
+        <div class="priceInput">
+            <div class="label_total flex">
+                <label for="price">Max price:</label>
+                <h3 class="total">$5000</h3>
+            </div>
+            <div class="input flex">
+                <input type="range" max="5000" min="1000">
+            </div>
+        </div>
+
+        <div class="searchOptions flex">
+            <!-- <mat-icon class="icon">filter_list</mat-icon> -->
+            <i class="fa fa-filter icon"></i>
+            <span>MORE FILTERS</span>
+        </div>
+    </div>
+
+    <div data-aos="fade-up" class="homeFooterIcons flex">
+        <div class="rightIcons">
+            <span class="fab fa-facebook icon"></span>
+            <span class="fab fa-instagram icon"></span>
+            <span class="fab fa-tiktok icon"></span>
+            <span class="fab fa-twitter icon"></span>
+        </div>
+        <div class="leftIcons">
+            <mat-icon class="icon"> format_list_bulleted</mat-icon>
+            <mat-icon class="icon"> textsms</mat-icon>
+        </div>
+    </div>
+  </div>
+</section>
