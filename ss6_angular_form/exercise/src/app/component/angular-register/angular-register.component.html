@@ -1,0 +1,132 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+              <form [formGroup]="registerForm" (ngSubmit)="registersForm()">
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <input type="text" formControlName="email" name="email"
+                             class="form-control form-control-lg"/>
+                      <label class="form-label" for="firstName">Email</label>
+                      <p *ngIf="registerForm.get('email').errors?.required && registerForm.get('email').touched">Email không được để trống!</p>
+                      <p *ngIf="registerForm.get('email').errors?.email && registerForm.get('email').touched">Email sai định dạng!</p>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <input type="text" formControlName="age" name="age" id="lastName" class="form-control form-control-lg"/>
+                      <label class="form-label" for="lastName">Tuổi</label>
+                      <p *ngIf="registerForm.get('age').errors?.required && registerForm.get('age').touched">Tuổi không được để trống!</p>
+                      <p *ngIf="registerForm.get('age').errors?.min && registerForm.get('age').touched">Chưa đủ tuổi!</p>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+  
+                    <div class="form-outline datepicker w-100">
+                      <input type="text" formControlName="phone" name="phone" class="form-control form-control-lg" id="birthdayDate"/>
+                      <label for="birthdayDate" class="form-label">Số điện thoại</label>
+                      <p *ngIf="registerForm.get('phone').errors?.required && registerForm.get('phone').touched">SĐT không được để trống!</p>
+                      <p *ngIf="registerForm.get('phone').errors?.pattern && registerForm.get('phone').touched">SĐT sai định dạng!</p>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4">
+  
+                    <h6 class="mb-2 pb-1">Giới tính: </h6>
+  
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" formControlName="gender" name="gender" type="radio" name="inlineRadioOptions" id="femaleGender"
+                             value="option1" checked/>
+                      <label class="form-check-label" for="femaleGender">Nữ</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" formControlName="gender" name="gender" type="radio" name="inlineRadioOptions" id="maleGender"
+                             value="option2"/>
+                      <label class="form-check-label" for="maleGender">Nam</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" formControlName="gender" name="gender" type="radio" name="inlineRadioOptions" id="otherGender"
+                             value="option3"/>
+                      <label class="form-check-label" for="otherGender">Khác</label>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="row" formGroupName="pwGroup">
+                  <div class="col-md-6 mb-4 pb-2">
+  
+                    <div class="form-outline">
+                      <input type="password" formControlName="password" name="password" id="emailAddress" class="form-control form-control-lg"/>
+                      <label class="form-label" for="emailAddress">Mật khẩu</label>
+                      <p *ngIf="password?.errors?.required && password.touched" >Mật khẩu không được để trống</p>
+                      <p *ngIf="password?.errors?.minlength && password.touched" >Mật khẩu quá ngắn</p>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+  
+                    <div class="form-outline">
+                      <input type="password" formControlName="confirmPassword" name="confirmPassword" id="phoneNumber" class="form-control form-control-lg"/>
+                      <label class="form-label" for="phoneNumber">Nhập lại mật khẩu</label>
+                      <p *ngIf="registerForm.hasError('passwordnotmatch',['pwGroup']) &&  confirmPassword.touched">Không đúng với mật khẩu</p>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-12">
+  
+                    <div class="form-outline">
+                      <input type="text" formControlName="country" name="country" id="firstName"
+                             class="form-control form-control-lg"/>
+                      <label class="form-label" for="firstName">Địa chỉ</label>
+                      <p *ngIf="registerForm.get('country').errors?.required && registerForm.get('country').touched">Địa chỉ không được để trống!</p>
+                      <p *ngIf="registerForm.get('country').errors?.maxlength && registerForm.get('country').touched">Địa chỉ quá dài!</p>
+                    </div>
+  
+                  </div>
+  
+                </div>
+  
+  
+                <!--              <div class="row">-->
+                <!--                <div class="col-12">-->
+  
+                <!--                  <select class="select form-control-lg">-->
+                <!--                    <option value="1" disabled>Choose option</option>-->
+                <!--                    <option value="2">Subject 1</option>-->
+                <!--                    <option value="3">Subject 2</option>-->
+                <!--                    <option value="4">Subject 3</option>-->
+                <!--                  </select>-->
+                <!--                  <label class="form-label select-label">Choose option</label>-->
+  
+                <!--                </div>-->
+                <!--              </div>-->
+  
+                <div class="mt-4 pt-2 text-center">
+                  <button type="submit" class="btn btn-primary btn-lg">Đăng ký</button>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
