@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation  } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 import { Router } from "@angular/router";
@@ -7,10 +7,12 @@ import { switchMap } from 'rxjs/operators';
 import { customer } from "src/app/models/customer/customer";
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
+
 @Component({
   selector: "app-list-customer",
   templateUrl: "./list-customer.component.html",
   styleUrls: ["./list-customer.component.scss"],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ListCustomerComponent implements OnInit {
 
@@ -66,4 +68,8 @@ export class ListCustomerComponent implements OnInit {
     //   this.generals = next;
     // })
   }
+    
 }
+
+
+// "@ng-bootstrap/ng-bootstrap": "^14.0.1",

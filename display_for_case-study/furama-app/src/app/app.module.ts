@@ -31,6 +31,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatListModule} from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 
+import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
+
 /* reactive-form */
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -46,7 +48,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     CreateCustomerComponent,
     UpdateCustomerComponent,
-    ListCustomerComponent
+    ListCustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-
+    NgxPaginationModule,
   ],
 
   providers: [],
