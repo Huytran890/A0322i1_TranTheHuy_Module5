@@ -2,9 +2,9 @@ import { customerType } from "./customerType";
 import { person } from "../person";
 
 export class customer extends person {
-  private address: string;
-  private customerType: customerType;
-  constructor(
+  address: string;
+  customerType: customerType;
+  constructor (
     id: number,
     name: string,
     gender: number,

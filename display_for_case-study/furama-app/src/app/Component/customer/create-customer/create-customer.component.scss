@@ -1,0 +1,35 @@
+:root {
+    --primaryColor: hsl(199, 100%, 33%);
+    --secondaryColor: hsl(187, 85%, 43%);
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --inputColor: rgb(239, 239, 239);
+    --greyText: rgb(190, 190, 190);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primaryColor);
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+  
+.example-radio-button {
+    margin: 7px;
+}
+
+// .example-form-field {
+//     margin-right: 20px;
+// }
+
+

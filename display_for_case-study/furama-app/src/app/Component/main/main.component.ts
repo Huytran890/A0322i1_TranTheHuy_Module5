@@ -9,13 +9,12 @@ import { destination } from 'src/app/models/destination';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public data: Array<destination> = [];
-  img1: 'assets/videos/bora-bora.jpg';
+  public data: Array<destination> = [];;
   constructor() { 
     this.data = [
       {
         id: 1,
-        imgSrc: this.img1,
+        imgSrc: 'assets/videos/bora-bora.jpg',
         destTitle: 'Bora Bora',
         location: 'New Zealand',
         grade: 'CULTURAL RELAX',
@@ -26,7 +25,7 @@ export class MainComponent implements OnInit {
 
       {
         id: 2,
-        imgSrc: this.img1,
+        imgSrc: 'assets/videos/bora-bora.jpg',
         destTitle: 'Machu Picchu',
         location: 'Peru',
         grade: 'CULTURAL RELAX',
@@ -35,39 +34,39 @@ export class MainComponent implements OnInit {
         'This place is popular among tourist as the sunrise from the Sun Gate is simply spectacular. '
       },
 
-      // {
-      //   id: 3,
-      //   imgSrc: 'img',
-      //   destTitle: 'Great Barrier Reef',
-      //   location: 'Australia',
-      //   grade: 'CULTURAL RELAX',
-      //   fees: 739,
-      //   description: 'One of the most remarkable Australian natural gifts is the Great Barrier Reef. '+
-      //   'The hallmark of this place is "lavish" and "beauty". Always interesting to be in this place. '
-      // },
+      {
+        id: 3,
+        imgSrc: 'assets/videos/bora-bora.jpg',
+        destTitle: 'Great Barrier Reef',
+        location: 'Australia',
+        grade: 'CULTURAL RELAX',
+        fees: 739,
+        description: 'One of the most remarkable Australian natural gifts is the Great Barrier Reef. '+
+        'The hallmark of this place is "lavish" and "beauty". Always interesting to be in this place. '
+      },
 
-      // {
-      //   id: 4,
-      //   imgSrc: 'img',
-      //   destTitle: 'Cappadocia',
-      //   location: 'Turkey',
-      //   grade: 'CULTURAL RELAX',
-      //   fees: 800,
-      //   description: 'According to the world Tourism Ranking, 45 million people visit Turkey each year,'+
-      //   'and from that about 2 million come to visit Cappodocia. This place is known for its luxurious stays and adventurous activities. '
-      // },
+      {
+        id: 4,
+        imgSrc: 'assets/videos/bora-bora.jpg',
+        destTitle: 'Cappadocia',
+        location: 'Turkey',
+        grade: 'CULTURAL RELAX',
+        fees: 800,
+        description: 'According to the world Tourism Ranking, 45 million people visit Turkey each year,'+
+        'and from that about 2 million come to visit Cappodocia. This place is known for its luxurious stays and adventurous activities. '
+      },
 
-      // {
-      //   id: 5,
-      //   imgSrc: 'img',
-      //   destTitle: 'Cinque Terre',
-      //   location: 'Italy',
-      //   grade: 'CULTURAL RELAX',
-      //   fees: 849,
-      //   description: 'The vibrant hues of the houses are its benchmark and explain the beauty of this place. '+
-      //   'Also, if you are a foodie and love seafood, you will be exhilarated with the choice you are about to get here. '+
-      //   'Happy exploring great food! '
-      // }
+      {
+        id: 5,
+        imgSrc: 'assets/videos/bora-bora.jpg',
+        destTitle: 'Cinque Terre',
+        location: 'Italy',
+        grade: 'CULTURAL RELAX',
+        fees: 849,
+        description: 'The vibrant hues of the houses are its benchmark and explain the beauty of this place. '+
+        'Also, if you are a foodie and love seafood, you will be exhilarated with the choice you are about to get here. '+
+        'Happy exploring great food! '
+      }
     ]
   }
 

@@ -1,0 +1,92 @@
+<head>
+    ...
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+</head>
+  
+  <div class="container-fuild mt-4">
+    <div class="logo text-center">
+      <h1>Create new</h1>
+    </div>
+  
+    <div class="registration-form m-3 p-4">
+      <form [formGroup]="customerForm" (ngSubmit)="addNewCustomer()">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Id Customer</mat-label>
+              <input formControlName="id" matInput placeholder="Id customer" />
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Customer Name</mat-label>
+              <input formControlName="name" matInput placeholder="Customer name" />
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-sm-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput placeholder="Email" />
+              <mat-icon matSuffix>mail</mat-icon>
+              <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error> -->
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Telephone</mat-label>
+              <span matPrefix>+84 &nbsp;</span>
+              <input type="tel" formControlName="phoneNumber" matInput placeholder="Phone number" />
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Identity Card</mat-label>
+              <input formControlName="identityCard" matInput placeholder="Identity card" />
+              <mat-icon matSuffix>line_weight</mat-icon>
+              <mat-hint>Number in VN</mat-hint>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+            <mat-label>Date Of Birth</mat-label>
+              <input formControlName="dateOfBirth" matInput [matDatepicker]="picker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6 mt-3">
+            <label id="example-radio-group-label">Gender</label>
+  
+            <mat-radio-group class="example-radio-group">
+              <mat-radio-button class="example-radio-button" *ngFor="let gender of ['Male', 'FeMale', 'Others']" [value]="gender">
+                {{ gender }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+  
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Address</mat-label>
+                <textarea formControlName="address" matInput placeholder="Ex. 100 Main St"></textarea>
+              </mat-form-field>
+          </div>
+        </div>
+        <button class="mt-2" mat-raised-button color="primary">Submit</button>
+      </form>
+    </div>
+  </div>
