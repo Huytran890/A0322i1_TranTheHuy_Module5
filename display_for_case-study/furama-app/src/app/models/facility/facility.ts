@@ -1,8 +1,9 @@
-export interface destination {
+export interface facility {
   id: number;
   imgSrc: string;
-  destTitle: string;
-  location: string;
+  title: string;
+  operation: string,
+  options: string;
   grade: string;
   fees: number;
   description: string;

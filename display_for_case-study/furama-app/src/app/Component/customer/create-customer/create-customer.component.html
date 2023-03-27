@@ -1,14 +1,14 @@
 <head>
     ...
-    <link
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-    />
+    /> -->
 </head>
   
-  <div class="container-fuild mt-4">
+  <div class="container mt-4">
     <div class="logo text-center">
-      <h1>Create new</h1>
+      <h1>Create new customer</h1>
     </div>
   
     <div class="registration-form m-3 p-4">
@@ -19,6 +19,12 @@
               <mat-label>Id Customer</mat-label>
               <input formControlName="id" matInput placeholder="Id customer" />
               <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              <mat-error *ngIf="customerForm.get('id').errors?.required && customerForm.get('id').touched">
+                Customer's id is <strong>required!</strong>
+              </mat-error>
+              <mat-error *ngIf="customerForm.get('id').errors?.pattern && customerForm.get('id').touched">
+                Wrong format customer code <strong>(KH-xxxx)!</strong>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -27,6 +33,13 @@
               <mat-label>Customer Name</mat-label>
               <input formControlName="name" matInput placeholder="Customer name" />
               <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              <mat-error *ngIf="customerForm.get('name').errors?.required && customerForm.get('name').touched">
+                Customer's name is <strong>required!</strong>
+              </mat-error>
+              <mat-error *ngIf="(customerForm.get('name').errors?.minlength || customerForm.get('name').errors?.maxlength) && 
+                                  customerForm.get('name').touched">
+                Character range from <strong>3 to 45!</strong>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -35,9 +48,12 @@
               <mat-label>Email</mat-label>
               <input formControlName="email" matInput placeholder="Email" />
               <mat-icon matSuffix>mail</mat-icon>
-              <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error> -->
+              <mat-error *ngIf="customerForm.get('email').errors?.required && customerForm.get('email').touched">
+                Customer's email is <strong>required!</strong>
+              </mat-error>
+              <mat-error *ngIf="customerForm.get('email').errors?.email && customerForm.get('email').touched">
+                Wrong format for <strong>email!</strong>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -47,6 +63,12 @@
               <span matPrefix>+84 &nbsp;</span>
               <input type="tel" formControlName="phoneNumber" matInput placeholder="Phone number" />
               <mat-icon matSuffix>phone</mat-icon>
+              <mat-error *ngIf="customerForm.get('phoneNumber').errors?.required && customerForm.get('phoneNumber').touched">
+                Customer's phone is <strong>required!</strong>
+              </mat-error>
+              <mat-error *ngIf="customerForm.get('phoneNumber').errors?.pattern&& customerForm.get('phoneNumber').touched">
+                Wrong format for <strong>phone number!</strong>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -56,6 +78,12 @@
               <input formControlName="identityCard" matInput placeholder="Identity card" />
               <mat-icon matSuffix>line_weight</mat-icon>
               <mat-hint>Number in VN</mat-hint>
+              <mat-error *ngIf="customerForm.get('identityCard').errors?.required && customerForm.get('identityCard').touched">
+                Customer's identity card is <strong>required!</strong>
+              </mat-error>
+              <mat-error *ngIf="customerForm.get('identityCard').errors?.pattern && customerForm.get('identityCard').touched">
+                Wrong format for identity card <strong>(9 numbers or 12 numbers)!</strong>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -66,6 +94,12 @@
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="customerForm.get('dateOfBirth').errors?.required && customerForm.get('dateOfBirth').touched">
+                Customer's birthday is <strong>required!</strong>
+              </mat-error>
+              <mat-error *ngIf="customerForm.controls.dateOfBirth.errors?.pastDateValidator">
+                Birthday can't be <strong>in the future!</strong>
+              </mat-error>
             </mat-form-field>
           </div>
   
@@ -78,15 +112,34 @@
               </mat-radio-button>
             </mat-radio-group>
           </div>
+
+          <div class="col-md-6 mt-3">
+            <label class="select-option-label">Customer Type</label>
+            <mat-form-field appearance="fill">
+              <mat-label>Select me</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let type of ['Gold', 'Silver', 'Member']" value="type">{{type}}</mat-option>
+            
+              </mat-select>
+              <mat-hint MatHint.align="end">Here's the dropdown arrow ^</mat-hint>
+            </mat-form-field>
+          </div>
   
           <div class="col-md-12">
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Address</mat-label>
-                <textarea formControlName="address" matInput placeholder="Ex. 100 Main St"></textarea>
-              </mat-form-field>
+                <textarea formControlName="address" matInput placeholder="Ex. 12 Phan Châu Trinh, Đà nẵng"></textarea>
+                <mat-error *ngIf="customerForm.get('address').errors?.required && customerForm.get('address').touched">
+                  Customer's address is <strong>required!</strong>
+                </mat-error>
+            </mat-form-field>
           </div>
         </div>
-        <button class="mt-2" mat-raised-button color="primary">Submit</button>
+        <div class="button-space">
+          <button class="btn btn-primary">Submit</button>
+          <button class="btn btn-dark">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
+  <!-- [disabled]="customerForm.invalid" -->

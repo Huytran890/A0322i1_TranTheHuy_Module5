@@ -39,10 +39,13 @@ h1 {
         text-decoration: none;
 
         .icon {
-            font-size: 25px;
-            color: var(--primaryColor);
-            transform: translateY(5px);
-
+            // font-size: 25px;
+            // color: var(--primaryColor);
+            // transform: translateY(5px);
+            max-width: 100%;
+            height: auto;
+            border-style: none;
+            vertical-align: middle;
         }
     }
 

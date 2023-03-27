@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { destination } from 'src/app/models/destination';
+import { facility } from 'src/app/models/facility/facility';
 
 @Component({
   selector: 'app-main',
@@ -9,63 +9,111 @@ import { destination } from 'src/app/models/destination';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public data: Array<destination> = [];;
+  public data: Array<facility> = [];;
   constructor() { 
     this.data = [
       {
         id: 1,
-        imgSrc: 'assets/videos/bora-bora.jpg',
-        destTitle: 'Bora Bora',
-        location: 'New Zealand',
+        imgSrc: 'https://furamavietnam.com/wp-content/uploads/2018/03/Presidential-Suite-M.jpg',
+        title: 'Presidential Suite',
+        operation: 'Room Size:',
+        options: '130 m2',
         grade: 'CULTURAL RELAX',
-        fees: 600,
-        description: 'The epitome of romance, Bora Bora is one of the best travel destination in the world. '+
-        'This place is known for its luxurious stays and adventurous activities. '
+        fees: 399,
+        description: 'Decorated in muted cool colors and they feature local Cham artifacts and decorative handicrafts, '+
+        'and so make for an elegant, lavishly appointed yet homely atmosphere.'
       },
 
       {
         id: 2,
-        imgSrc: 'assets/videos/bora-bora.jpg',
-        destTitle: 'Machu Picchu',
-        location: 'Peru',
+        imgSrc: 'https://furamavietnam.com/wp-content/uploads/2018/08/Vietnam_Danang_Furama_Villas_Pool_Villas.jpg',
+        title: 'Pool Villas',
+        operation: 'Room Size:',
+        options: '320 m2',
         grade: 'CULTURAL RELAX',
-        fees: 679,
-        description: 'Huaya Picchu is a mountain in Peru, rising over Machu Picchu, the so-called Lost City of Incas. '+
-        'This place is popular among tourist as the sunrise from the Sun Gate is simply spectacular. '
+        fees: 529,
+        description: 'This is living with natural sunlight and the sophistication of traditional and contemporary design. '+
+        'The kitchen, modern and beautiful, is open to the deck and cobalt tiled pool, with sleek and modern appliances and a marble counter surface, and a rich mahogany dining area.'
       },
 
       {
         id: 3,
-        imgSrc: 'assets/videos/bora-bora.jpg',
-        destTitle: 'Great Barrier Reef',
-        location: 'Australia',
+        imgSrc: 'https://furamavietnam.com/wp-content/uploads/2018/03/%5E224942630D3A5A787C2989A9F5AF4A3E34E6A8CAE8D94FA3D4%5Epimgpsh_fullsize_distr.jpg',
+        title: 'Ocean Suite',
+        operation: 'Room Size:',
+        options: '85.8 m2',
         grade: 'CULTURAL RELAX',
         fees: 739,
-        description: 'One of the most remarkable Australian natural gifts is the Great Barrier Reef. '+
-        'The hallmark of this place is "lavish" and "beauty". Always interesting to be in this place. '
+        description: 'French colonial style blends charmingly with traditional Vietnamese interior design. '+
+        'Listen to the sound of the waves and watch the fishermen in their basket boats, while you are relaxing on one of the two outside sofas on the balcony.'
       },
 
       {
         id: 4,
-        imgSrc: 'assets/videos/bora-bora.jpg',
-        destTitle: 'Cappadocia',
-        location: 'Turkey',
-        grade: 'CULTURAL RELAX',
-        fees: 800,
-        description: 'According to the world Tourism Ranking, 45 million people visit Turkey each year,'+
-        'and from that about 2 million come to visit Cappodocia. This place is known for its luxurious stays and adventurous activities. '
+        imgSrc: 'https://furamavietnam.com/wp-content/uploads/2018/08/Cafe-Indochine-02.jpg',
+        title: 'Culinary',
+        operation: 'Operation:',
+        options: 'from 19:30pm to 20:00pm',
+        grade: 'TRADITIONAL CUISINE',
+        fees: 159,
+        description: 'Unique signature items, a wide range of paired sauces, and exceptional service make it the first and only kind of sumptuous, '+
+        'and creative seafood and steak experience in a show kitchen for memorable dining at one of the top restaurants in Danang.'
       },
 
       {
         id: 5,
-        imgSrc: 'assets/videos/bora-bora.jpg',
-        destTitle: 'Cinque Terre',
-        location: 'Italy',
+        imgSrc: 'https://ik.imagekit.io/riw0p0n6wg/uploads/tour/water-sports-adventure-water-blow-visit-2120.png?tr=w-641,h-337',
+        title: 'Water Sports',
+        operation: 'Operation:',
+        options: 'from 6:00am to 11:00pm daily',
+        grade: 'THRILLING SPORT',
+        fees: 199,
+        description: 'A full range of water sports will keep you busy. '+
+        'We offer catamaran sailing, windsurfing, ocean kayaking, body boarding, aqua cycling, water skiing, jet skiing, wakeboarding, banana, parasailing, and other towable items all available for rent.'
+      },
+      {
+        id: 6,
+        imgSrc: 'https://danangprivatecar.com/wp-content/uploads/2022/09/lan-ngam-san-ho-ban-dao-son-tra-hava-travel-1.jpg',
+        title: 'Coral Diving',
+        operation: 'Operation:',
+        options: 'from February to October daily',
+        grade: 'EXPLORATORY SPORT',
+        fees: 519,
+        description: 'The coast surrounding the Furama Resort offers a new and exciting destination for divers in Asia during the Danang diving season. '+
+        'Furama Resort Dive Center is operated by highly qualified PADI instructors, offering diving or snorkeling tours to Son Tra Peninsula and Cham Island, and classes at the resort’s pools.'
+      },
+      {
+        id: 7,
+        imgSrc: 'https://www.vietgreentravel.com/uploads/plugin/product_items/974/1621908698-1094812383-helicopter-tour-amp-explore-phong-nha-cave-quang-binh.jpg',
+        title: 'Helicopter Tours',
+        operation: 'Operation:',
+        options: 'from 8:00am to 14:00pm daily',
+        grade: 'SIGHTSEEING TOURS',
+        fees: 469,
+        description: 'Enjoy the breathtaking view of Danang City features all the famous landmarks including the iconic Dragon Bridge and the extremely impressive 67-meter Lady Buddha statue at Linh Ung pagoda. '+
+        'Take a deep breath and admire the beautiful scenery along both banks of the poetic Han River; The many fishing boats bobbing on the water.'
+      },
+      {
+        id: 8,
+        imgSrc: 'http://www.baovanhoa.vn/Portals/0/EasyDNNNews/thumbs/62512/1334931-(1).jpg',
+        title: 'Bicycle Renting',
+        operation: 'Operation:',
+        options: 'all time frames of the day',
         grade: 'CULTURAL RELAX',
-        fees: 849,
-        description: 'The vibrant hues of the houses are its benchmark and explain the beauty of this place. '+
-        'Also, if you are a foodie and love seafood, you will be exhilarated with the choice you are about to get here. '+
-        'Happy exploring great food! '
+        fees: 39,
+        description: 'Cycling helps visitors enjoy the romantic scenery of Da Nang at night, in addition to early morning exercise on the roads along the beach. '+
+        'This is a humane activity to protect the environment applied by furama to serve visitors with great moments when using it.'
+      },
+      {
+        id: 9,
+        imgSrc: 'https://furamavietnam.com/wp-content/uploads/2023/01/Vsense-Spa-Da-Nang-Furama.jpg',
+        title: 'Spa & Fitness',
+        operation: 'Operation:',
+        options: 'from 9:00am to 16:30pm daily',
+        grade: 'CULTURAL RELAX',
+        fees: 99,
+        description: 'Indulge yourself on a relaxation and well-being journey with professional spa services at Furama Resort Danang. '+
+        'You will get back with full energy and feel your rejuvenation with special therapies. Come and experience!'
       }
     ]
   }

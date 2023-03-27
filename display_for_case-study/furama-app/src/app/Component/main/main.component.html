@@ -1,6 +1,6 @@
 <section class="main container section">
   <div class="secTitle">
-    <h3 data-aos="fade-right" class="title">Most visited destinations</h3>
+    <h3 data-aos="fade-right" class="title">Most popular services</h3>
   </div>
 
   <div class="secContent grid">
@@ -10,10 +10,11 @@
       </div>
 
       <div class="cardInfo">
-        <h4 class="destTitle">{{ dest.destTitle }}</h4>
+        <h4 class="destTitle">{{ dest.title }}</h4>
         <span class="continent flex">
-          <mat-icon class="icon">location_on</mat-icon>
-          <span class="name">{{ dest.location }}</span>
+          <!-- <mat-icon class="icon">location_on</mat-icon> -->
+          <span class="operation">{{ dest.operation }}</span>
+          <span class="name">{{ dest.options }}</span>
         </span>
 
         <div class="fees flex">
@@ -30,7 +31,7 @@
             <p>{{dest.description}}</p>
         </div>
 
-        <button class="btn flex">DETAILS
+        <button class="btn flex">BOOKING
             <i class="fa fa-clipboard-check icon"></i>
         </button>
 

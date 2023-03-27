@@ -32,7 +32,7 @@
                 content: '';
                 background-color: var(--secondaryColor);
                 height: 5px;
-                max-width: 140px;
+                max-width: 110px;
                 right: 0;
                 bottom: 5px;
                 z-index: -1;
@@ -90,11 +90,12 @@
 
                 .continent {
                     position: relative;
-                    left: -4px;
-                    .icon {
+                    // left: -2px;
+                    .operation {
                         color: var(--textColor);
-                        font-size: 18px;
-                        width: 20px;
+                        font-size: 15px;
+                        padding-right: 5px;
+                        // width: 20px;
                     }
 
                     .name {
@@ -119,6 +120,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        margin-right: 5px;
 
                         small {
                             text-align: center;
@@ -187,7 +189,7 @@
     }
 }
 
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 830px) {
     .secContent {
         grid-template-columns: repeat(3,1fr);
 

@@ -1,6 +1,6 @@
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-create-customer',
@@ -13,14 +13,27 @@ export class CreateCustomerComponent implements OnInit {
 
   constructor(private customerService: CustomerService, private toastr: ToastrService) { 
     this.customerForm = new FormGroup({
-      id: new FormControl('',),
-      name: new FormControl('',),
-      // gender: new FormControl('',),
-      dateOfBirth: new FormControl('',),
-      identityCard: new FormControl('',),
-      phoneNumber: new FormControl('',),
-      email: new FormControl('',),
-      address: new FormControl('',),
+      id: new FormControl('', [Validators.required, Validators.pattern('^(KH)\\-\\d{4}$')]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(45)]),
+      gender: new FormControl('', [Validators.required]),
+      dateOfBirth: new FormControl('', [
+        Validators.required, 
+        this.pastDateValidator,
+      ]),
+      identityCard: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^\\d{9}|\\d{12}$')
+      ]),
+      phoneNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{9}$')
+      ]),
+      email: new FormControl('', [Validators.required,
+        Validators.email
+      ]),
+      address: new FormControl('', [Validators.required]),
+
+      customerType: new FormControl('', [Validators.required]),
     });
   }
   
@@ -28,9 +41,29 @@ export class CreateCustomerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addNewCustomer() {
-    console.log(this.customerForm);
-    
+  pastDateValidator(control: FormControl) {
+    const inputDate = new Date(control.value);
+    const currentDate = new Date();
+    if (inputDate > currentDate) {
+      return { pastDate: true };
+    }
+    return null;
   }
 
+  addNewCustomer() {
+    console.log(this.customerForm);
+  }
+
+  submit() {
+    // if (this.customerForm.valid) {
+    //   this.customerService.saveCustomer(this.customerForm.value).subscribe(() => {
+    //     this.customerForm.reset();
+        this.toastr.success('Thêm mới thành công!');
+    //   }, e => {
+    //     console.log(e);
+    //   }, () => {
+    //     this.router.navigate(['/list']);
+    //   });
+    // }
+  }
 }
