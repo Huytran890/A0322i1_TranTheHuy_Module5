@@ -1,73 +1,146 @@
-<mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>description</mat-card-subtitle>
-    </mat-card-header>
-    
-    <mat-card-content>
-      <mat-list>
+<head>
+  ...
+</head>
 
-        <mat-list-item>
-          <div matLine>
-              Gender:
-              <button mat-button>Male</button>
-          </div>
-        </mat-list-item>
+<div class="container mt-4">
+  <div class="logo text-center">
+    <h1>Create new customer</h1>
+  </div>
 
-        <mat-list-item>
-          <div matLine>
-              Identity Card:
-              <button mat-button>123456789</button>
-          </div>
-        </mat-list-item>
+  <div class="registration-form m-3 p-4">
+    <form [formGroup]="updateForm" (ngSubmit)="updateCustomer(id)">
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Id Customer</mat-label>
+            <input formControlName="id" matInput placeholder="Id customer" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-error *ngIf="updateForm.get('id').errors?.required && updateForm.get('id').touched">
+              Customer's id is <strong>required!</strong>
+            </mat-error>
+            <mat-error *ngIf="updateForm.get('id').errors?.pattern && updateForm.get('id').touched">
+              Wrong format customer code <strong>(KH-xxxx)!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        <mat-list-item>
-          <div matLine>
-              BirthDay:
-              <button mat-button>16-11-2002</button>
-          </div>
-        </mat-list-item>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Customer Name</mat-label>
+            <input formControlName="name" matInput placeholder="Customer name" />
+            <mat-icon matSuffix> person_pin</mat-icon>
+            <mat-error *ngIf="updateForm.get('name').errors?.required && updateForm.get('name').touched">
+              Customer's name is <strong>required!</strong>
+            </mat-error>
+            <mat-error *ngIf="(updateForm.get('name').errors?.minlength || updateForm.get('name').errors?.maxlength) && 
+                        updateForm.get('name').touched">
+              Character range from <strong>3 to 45!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        <mat-list-item>
-            <div matLine>
-                Mobile Number:
-                <button mat-button>0905783653</button>
-            </div>
-        </mat-list-item>
+        <div class="col-sm-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="Email" />
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-error *ngIf="updateForm.get('email').errors?.required && updateForm.get('email').touched">
+              Customer's email is <strong>required!</strong>
+            </mat-error>
+            <mat-error *ngIf="updateForm.get('email').errors?.email && updateForm.get('email').touched">
+              Wrong format for <strong>email!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        <mat-list-item>
-          <div matLine>
-              Email:
-              <button mat-button>Huytran@gmail.com</button>
-          </div>
-        </mat-list-item>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+84 &nbsp;</span>
+            <input type="tel" formControlName="phoneNumber" matInput placeholder="Phone number" />
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="updateForm.get('phoneNumber').errors?.required && updateForm.get('phoneNumber').touched">
+              Customer's phone is <strong>required!</strong>
+            </mat-error>
+            <mat-error *ngIf="updateForm.get('phoneNumber').errors?.pattern&& updateForm.get('phoneNumber').touched">
+              Wrong format for <strong>phone number!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        <mat-list-item>
-          <div matLine>
-              Addess:
-              <button mat-button>k94/32 Lê Hữu Trác, Đà nẵng</button>
-          </div>
-        </mat-list-item>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Identity Card</mat-label>
+            <input formControlName="identityCard" matInput placeholder="Identity card" />
+            <mat-icon matSuffix>line_weight</mat-icon>
+            <mat-hint>Number in VN</mat-hint>
+            <mat-error *ngIf="updateForm.get('identityCard').errors?.required && updateForm.get('identityCard').touched">
+              Customer's identity card is <strong>required!</strong>
+            </mat-error>
+            <mat-error *ngIf="updateForm.get('identityCard').errors?.pattern && updateForm.get('identityCard').touched">
+              Wrong format for identity card <strong>(9 numbers or 12 numbers)!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        <mat-list-item>
-            <div >
-                Goals:
-                <button mat-button><mat-chip-list>
-                    <ng-container *ngFor="let row of ['good', 'bad']">
-                        <mat-chip selected>{{row}}</mat-chip>
-                    </ng-container>
-                </mat-chip-list></button>
-            </div>
-        </mat-list-item>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+          <mat-label>Date Of Birth</mat-label>
+            <input formControlName="dateOfBirth" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="updateForm.get('dateOfBirth').errors?.required && updateForm.get('dateOfBirth').touched">
+              Customer's birthday is <strong>required!</strong>
+            </mat-error>
+            <mat-error *ngIf="updateForm.controls.dateOfBirth.errors?.pastDate">
+              Birthday can't be <strong>in the future!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-      </mat-list>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-    <mat-card-footer>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </mat-card-footer>
-  </mat-card>
+        <div class="col-md-6 mt-3">
+          <label id="example-radio-group-label">Gender</label>
+
+          <mat-radio-group class="example-radio-group" formControlName="gender">
+            <mat-radio-button class="example-radio-button" value="0">Male</mat-radio-button>
+            <mat-radio-button class="example-radio-button" value="1">Female</mat-radio-button>
+            <mat-radio-button class="example-radio-button" value="2">Others</mat-radio-button>
+            <mat-error *ngIf="updateForm.get('gender').errors?.required && updateForm.get('gender').touched">
+              Customer's gender is <strong>required!</strong>
+            </mat-error>
+          </mat-radio-group>
+        </div>
+
+        <div class="col-md-6 mt-3">
+          <label class="select-option-label">Customer Type</label>
+          <mat-form-field appearance="fill">
+            <mat-label>Select me</mat-label>
+            <mat-select formControlName="customerType">
+              <mat-option *ngFor="let type of customertypes" [value]="type">{{type.name}}</mat-option>
+            </mat-select>
+            <mat-hint MatHint.align="end">Choose your rank ^</mat-hint>
+            <mat-error *ngIf="updateForm.get('customerType').errors?.required && updateForm.get('customerType').touched">
+              Customer's rank is <strong>required!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Address</mat-label>
+              <textarea formControlName="address" matInput placeholder="Ex. 12 Phan Châu Trinh, Đà nẵng"></textarea>
+              <mat-error *ngIf="updateForm.get('address').errors?.required && updateForm.get('address').touched">
+                Customer's address is <strong>required!</strong>
+              </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="button-space">
+        <button mat-raised-button color="primary" type="submit">update</button>
+        <button mat-raised-button color="accent" routerLink="/customer/list">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- [disabled]="customerForm.invalid" -->

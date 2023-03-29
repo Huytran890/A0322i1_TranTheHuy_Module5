@@ -1,30 +1,69 @@
-.example-card {
-    max-width: 460px;
-    display: block;
-    margin: 0 auto;
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.min.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+:root {
+    --primaryColor: hsl(199, 100%, 33%);
+    --secondaryColor: hsl(187, 85%, 43%);
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: hsl(240, 4%, 36%);
+    --inputColor: rgb(239, 239, 239);
+    --greyText: rgb(190, 190, 190);
 }
 
-.mat-card-header {
-  align-items: center;
-
+h1 {
+    font-size: 2.5rem;
+    color: var(--primaryColor);
 }
 
-.mat-card-header .mat-card-title {
-  margin-bottom: 4px;
+mat-form-field {
+    width: 100%;
 }
 
-.mat-card-header .mat-card-subtitle {
-  margin-bottom: 0;
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    align-items: flex-start;
 }
-
-
   
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+.example-radio-button {
+    margin: 7px;
 }
 
-.mat-card-avatar {
-  width: 45px;
-  height: 45px;
+// .example-form-field {
+//     margin-right: 20px;
+// }
+.select-option-label {
+    margin: 10px 0;
 }
+
+.button-space {
+    display: flex;
+    gap: 8px;
+}
+
+button {
+    display: inline-block;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.5s;
+    text-align: center;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+button:hover:first-child {
+    background-color: var(--primaryColor);
+}
+
+button:hover:last-child {
+    background-color: #343a40;
+}
+
+.cancel {
+    color: darkgrey !important;
+}
+
+

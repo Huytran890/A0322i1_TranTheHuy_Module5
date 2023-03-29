@@ -1,0 +1,100 @@
+<section class="book container" id="book">
+  <h1 class="heading">
+    <span>b</span>
+    <span>0</span>
+    <span>0</span>
+    <span>k</span>
+    <span class="space"></span>
+    <span>n</span>
+    <span>o</span>
+    <span>w</span>
+  </h1>
+
+  <div class="container-fuild mt-4">
+    <div class="registration-form m-3">
+      <form [formGroup]="contractForm">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Id Contract</mat-label>
+              <input matInput placeholder="Id contract" />
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Customer Name</mat-label>
+              <input formControlName="name" matInput placeholder="Customer name" />
+              <mat-icon matSuffix> person_pin</mat-icon>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Telephone</mat-label>
+              <span matPrefix>+84 &nbsp;</span>
+              <input type="tel" formControlName="phoneNumber" matInput placeholder="Phone number" />
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Deposit</mat-label>
+              <input matInput placeholder="Deposit" />
+              <mat-icon matSuffix> monetization_on</mat-icon>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+            <mat-label>Begin Date</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+            <mat-label>End Date</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Deposit</mat-label>
+              <input readonly matInput placeholder="Deposit" />
+              <mat-icon matSuffix> monetization_on</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Deposit</mat-label>
+              <input readonly matInput placeholder="Deposit" />
+              <mat-icon matSuffix> monetization_on</mat-icon>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Address</mat-label>
+                <textarea formControlName="address" matInput placeholder="Ex. 12 Phan Châu Trinh, Đà nẵng"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="button-space">
+          <button mat-raised-button color="primary" type="submit">submit</button>
+          <button mat-raised-button color="accent" routerLink="/customer/list">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

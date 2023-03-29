@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation  } from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewEncapsulation  } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Router } from "@angular/router";
 import { Observable, of, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -39,6 +40,13 @@ export class ListCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCustomer();
+  }
+
+  /* Create animation by using Aos library*/
+  ngAfterViewInit(): void {
+    AOS.init({
+      duration: 2000
+    });
   }
 
   goToPage(page: number) {

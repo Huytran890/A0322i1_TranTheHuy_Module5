@@ -1,14 +1,14 @@
 import { customerType } from './../../models/customer/customerType';
 import { customer } from '../../models/customer/customer';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class CustomerService implements OnInit {
   customers: customer[] = [];
-  gender: string[]
+  customerTypes: customerType[] = [];
 
   constructor() {
     this.customers.push(
@@ -21,7 +21,7 @@ export class CustomerService {
         phoneNumber: '0905783653',
         email: 'huytran@gmail.com',
         address: 'k94/32 Lê Hữu Trác, Đà nẵng',
-        customerType: {id: 1, name: 'Vip'},
+        customerType: {id: 1, name: 'Diamond'},
       },
       {
         id: 2,
@@ -45,7 +45,22 @@ export class CustomerService {
         address: '27 An Thượng 2, Quảng Bình',
         customerType: {id: 3, name: 'Member'},
       },
-    )
+      {
+        id: 4,
+        name: 'Võ Đình Tuấn',
+        gender: 2,
+        dateOfBirth: new Date('2022-01-01'),
+        identityCard: '078911301973',
+        phoneNumber: '0511797979',
+        email: 'tuanvo@gmail.com',
+        address: '12 Nguyễn Văn Thoại, Đà Lạt',
+        customerType: {id: 3, name: 'Gold'},
+      },
+    );
+  }
+
+  ngOnInit(): void {
+      
   }
 
   getAll(): customer[] {
@@ -54,6 +69,27 @@ export class CustomerService {
 
   addStudent(event: any): void {
     this.customers.push(event);
+  }
+
+  findById(value: number): customer {
+    return this.customers.filter(customer => 
+      customer.id === value)[0];
+  }
+
+  updateCustomer(id: number, customer: customer) {
+    for(let i = 0; i < this.customers.length; i++) {
+      if(this.customers[i]['id'] === id) {
+        this.customers[i] = customer;
+        break;
+      }
+    }
+    console.log(this.customers);
+  }
+
+  deleteCustomer(id: number) {
+    this.customers = this.customers.filter(customer => {
+      return customer.id !== id;
+    });
   }
 }
 

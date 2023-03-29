@@ -4,18 +4,18 @@
         <div class="logoDiv">
             <a href="#" class="logo flex">
                 <!-- <h1><mat-icon class="icon">travel_explore</mat-icon>  Furama</h1> -->
-                <img class="icon" style="width: 70px; height: 70px;" src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png" alt="Furama">
+                <img class="icon" style="width: 70px; height: 100px;" src="https://furamavietnam.com/wp-content/uploads/2018/10/logo.png" alt="Furama">
             </a>
         </div>
 
         <div [ngClass]="active">
             <ul class="navLists flex">
                 <li class="navItem">
-                    <a href="#" class="navLink">Home</a>
+                    <a routerLink="/service" class="navLink">Home</a>
                 </li>
 
                 <li class="navItem">
-                    <a href="" class="navLink">Customers</a>
+                    <a routerLink="/customer/list" class="navLink">Customers</a>
                 </li>
 
                 <li class="navItem">

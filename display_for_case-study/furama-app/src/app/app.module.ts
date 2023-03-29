@@ -1,6 +1,7 @@
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +40,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 /* ng-toastr */
 import { ToastrModule } from 'ngx-toastr';
 
+import { DetailCustomerComponent } from './Component/customer/detail-customer/detail-customer.component';
+import { CreateContractComponent } from './Component/contract/create-contract/create-contract.component';
+import { CommentComponent } from './Component/comments/comment.component';
+import { DetailContractComponent } from './Component/contract/detail-contract/detail-contract.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,10 +57,19 @@ import { ToastrModule } from 'ngx-toastr';
     CreateCustomerComponent,
     UpdateCustomerComponent,
     ListCustomerComponent,
+    DetailCustomerComponent,
+    
+    CreateContractComponent,
+    
+    CommentComponent,
+    
+    DetailContractComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     MatIconModule,
     MatSlideToggleModule,
     MatFormFieldModule,

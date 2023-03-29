@@ -28,7 +28,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Customer Name</mat-label>
               <input formControlName="name" matInput placeholder="Customer name" />
-              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              <mat-icon matSuffix> person_pin</mat-icon>
               <mat-error *ngIf="customerForm.get('name').errors?.required && customerForm.get('name').touched">
                 Customer's name is <strong>required!</strong>
               </mat-error>
@@ -93,7 +93,7 @@
               <mat-error *ngIf="customerForm.get('dateOfBirth').errors?.required && customerForm.get('dateOfBirth').touched">
                 Customer's birthday is <strong>required!</strong>
               </mat-error>
-              <mat-error *ngIf="customerForm.controls.dateOfBirth.errors?.pastDateValidator">
+              <mat-error *ngIf="customerForm.controls.dateOfBirth.errors?.pastDate">
                 Birthday can't be <strong>in the future!</strong>
               </mat-error>
             </mat-form-field>
@@ -102,10 +102,10 @@
           <div class="col-md-6 mt-3">
             <label id="example-radio-group-label">Gender</label>
   
-            <mat-radio-group class="example-radio-group">
-              <mat-radio-button class="example-radio-button" *ngFor="let gender of ['Male', 'FeMale', 'Others']" [value]="gender">
-                {{ gender }}
-              </mat-radio-button>
+            <mat-radio-group class="example-radio-group" formControlName="gender">
+              <mat-radio-button class="example-radio-button" value="0">Male</mat-radio-button>
+              <mat-radio-button class="example-radio-button" value="1">Female</mat-radio-button>
+              <mat-radio-button class="example-radio-button" value="2">Others</mat-radio-button>
               <mat-error *ngIf="customerForm.get('gender').errors?.required && customerForm.get('gender').touched">
                 Customer's gender is <strong>required!</strong>
               </mat-error>
@@ -116,8 +116,8 @@
             <label class="select-option-label">Customer Type</label>
             <mat-form-field appearance="fill">
               <mat-label>Select me</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let type of ['Gold', 'Silver', 'Member']" value="type">{{type}}</mat-option>
+              <mat-select formControlName="customerType">
+                <mat-option *ngFor="let type of customerTypes" [value]="type">{{type.name}}</mat-option>
               </mat-select>
               <mat-hint MatHint.align="end">Choose your rank ^</mat-hint>
               <mat-error *ngIf="customerForm.get('customerType').errors?.required && customerForm.get('customerType').touched">
@@ -137,10 +137,10 @@
           </div>
         </div>
         <div class="button-space">
-          <button class="btn btn-primary">Submit</button>
-          <button class="btn btn-dark">Cancel</button>
+          <button mat-raised-button color="primary" [disabled]="customerForm.invalid" type="submit">submit</button>
+          <button mat-raised-button color="accent" routerLink="/customer/list">Cancel</button>
         </div>
       </form>
     </div>
   </div>
-  <!-- [disabled]="customerForm.invalid" -->
+<!-- [disabled]="customerForm.invalid" -->

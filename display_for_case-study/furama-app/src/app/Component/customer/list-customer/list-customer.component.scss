@@ -1,6 +1,8 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/scss/bootstrap.scss';
 @import '~font-awesome/css/font-awesome.min.css';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 :root {
 	--primaryColor: hsl(199, 100%, 33%);
 	--whiteColor: hsl(0, 0%, 100%);
@@ -144,3 +146,21 @@ table.table .avatar {
 	margin-top: 10px;
 	font-size: 13px;
 }    
+
+
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}

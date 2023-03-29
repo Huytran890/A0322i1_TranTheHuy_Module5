@@ -1,17 +1,22 @@
 <head>
   ...
 </head>
-<div class="container-xl">
+<section class="container-xl">
 	<div class="table-responsive">
-		<div class="table-wrapper">
+		<div class="table-wrapper" data-aos="fade-up">
 			<div class="table-title">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<h2>Manage <b>Customers</b></h2>
 					</div>
-					<div class="col-sm-6">
-						<a class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-						<a class="btn btn-danger"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+          <div class="col-sm-5">
+            <div class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" placeholder="Search">
+            </div>		
+          </div>
+					<div class="col-sm-3">
+						<a class="btn btn-success" routerLink="/customer/create"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>						
 					</div>
 				</div>
 			</div>
@@ -44,8 +49,8 @@
 						<td>{{customer.address}}</td>
 						<td>{{customer.customerType.name}}</td>
 						<td>
-							<a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-              <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+							<a [routerLink]="['/customer/detail', customer.id]" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+              <a [routerLink]="['/customer/update', customer.id]" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
               <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 						</td>
 					</tr>
@@ -65,10 +70,10 @@
 			</div>
 		</div>
 	</div>        
-</div>
+</section>
 
 <!-- Add/Edit Dialog -->
-<ng-template #editDialog let-modal>
+<!-- <ng-template #editDialog let-modal>
   <div class="modal-header">
     <h5 class="modal-title"></h5>
     <button type="button" class="close" aria-label="Close">
@@ -89,10 +94,10 @@
         <label>Phone</label>
         <input type="text" class="form-control" formControlName="phone" required>
       </div>
-    </form>
+    </form> -->
     <!-- Modal -->
     <!-- data-bs-toggle="modal" data-bs-target="#exampleModal" -->
-    <div
+    <!-- <div
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -133,5 +138,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 <!-- </div> -->
