@@ -20,19 +20,20 @@ export class CreateComponent implements OnInit {
     private router: Router
   ) {
     this.consignmentForm = new FormGroup({
-      id: new FormControl('', [Validators.required]),
-      product: new FormControl('', [Validators.required]),
-      quantity: new FormControl('', [Validators.required]),
-      importDate: new FormControl('', [Validators.required]),
-      exportDate: new FormControl('', [Validators.required]),
-      tax: new FormControl('', [Validators.required]),
+      id: new FormControl("", []),
+      product: new FormControl("", [Validators.required]),
+      quantity: new FormControl("", [Validators.required]),
+      importDate: new FormControl("", [Validators.required]),
+      exportDate: new FormControl("", [Validators.required]),
+      tax: new FormControl("", [Validators.required]),
     });
 
-    this.productService.getAllProduct().subscribe(value => {
+    this.productService.getAllProduct().subscribe(
+      (value) => {
         console.log(value);
         this.products = value;
       },
-      error => {
+      (error) => {
         console.log("Not found list products!");
       }
     );
@@ -43,24 +44,23 @@ export class CreateComponent implements OnInit {
   parseDate(dateString: string): string {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const day = ('0' + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
 
   save(): void {
     console.log(this.consignmentForm);
-    const consingment = this.consignmentForm.value;
-    consingment.importDate = this.parseDate(consingment.importDate);
-    consingment.exportDate = this.parseDate(consingment.exportDate);
-    this.consignmentService.addNewConsignment(consingment).subscribe(value => {
-        // this.consignmentForm.reset();
-        console.log('success full adding!');
-        
-        // this.router.navigateByUrl('').then(success => {
-
-        //     this.consignmentForm.reset();
-        // })
-    });
+    if (this.consignmentForm.valid) {
+      const consingment = this.consignmentForm.value;
+      consingment.importDate = this.parseDate(consingment.importDate);
+      consingment.exportDate = this.parseDate(consingment.exportDate);
+      this.consignmentService.addNewConsignment(consingment).subscribe((value) => {
+          console.log("success full adding!");
+          this.router.navigateByUrl('/list').then(success => {
+            this.consignmentForm.reset();
+          })
+        });
+    }
   }
 }

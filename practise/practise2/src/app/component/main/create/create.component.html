@@ -12,10 +12,10 @@
             <mat-label>Id Consignment</mat-label>
             <input formControlName="id" matInput placeholder="Id Consignment" />
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-error
+            <!-- <mat-error
               *ngIf="consignmentForm.get('id').errors?.required && consignmentForm.get('id').touched">
               Consignment's id is <strong>required!</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
         </div>
 
@@ -135,9 +135,8 @@
         <button mat-raised-button color="primary" 
         [disabled]="consignmentForm.invalid" type="submit">Submit</button>
 
-        <button mat-raised-button color="accent">Cancel</button>
+        <button mat-raised-button color="accent" routerLink="/list">Cancel</button>
       </div>
-
     </form>
   </div>
 </div>

@@ -1,27 +1,36 @@
-import { createComponent } from "@angular/compiler/src/core";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { UpdateComponent } from "./component/main/update/update.component";
 import { CreateComponent } from "./component/main/create/create.component";
 import { DetailComponent } from "./component/main/detail/detail.component";
+import { ListComponent } from "./component/main/list/list.component";
 
 const routes: Routes = [
-  // {
-  //   path: 'list', component: createComponent
-  // },
+  {
+    path: '', component: ListComponent,
+  },
 
   {
-    path: "create",
+    path: 'list', component: ListComponent,
+  },
+  
+  {
+    path: 'create',
     component: CreateComponent,
   },
 
   {
-    path: "detail",
+    path: 'detail/:id',
     component: DetailComponent,
   },
 
   {
-    path: "update",
+    path: 'update/:id',
+    component: UpdateComponent,
+  },
+
+  {
+    path: 'delete/:id',
     component: UpdateComponent,
   },
 ];
