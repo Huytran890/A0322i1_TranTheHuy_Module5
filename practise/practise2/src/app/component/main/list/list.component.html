@@ -1,4 +1,13 @@
 <div class="container mt-4">
+  <h1 class="heading">
+    <span>L</span>
+    <span>i</span>
+    <span>s</span>
+    <span>t</span>
+    <span>s</span>
+    
+  </h1>
+
   <div class="space">
     <mat-form-field>
       <mat-label>Filter</mat-label>
@@ -17,9 +26,9 @@
         <td mat-cell *matCellDef="let row; let i = index;">{{ i+1 }}</td>
       </ng-container>
       
-      <!-- product Column -->
-      <ng-container matColumnDef="product">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
+      <!-- product name Column -->
+      <ng-container matColumnDef="product.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="product.name">Product Name</th>
         <td mat-cell *matCellDef="let row">{{ row.product.name }}</td>
       </ng-container>
 
@@ -27,6 +36,18 @@
       <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
         <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+      </ng-container>
+
+      <!-- product origin Column -->
+      <ng-container matColumnDef="product.origin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="product.origin">Origin</th>
+        <td mat-cell *matCellDef="let row">{{ row.product.origin }}</td>
+      </ng-container>
+
+      <!-- product price Column -->
+      <ng-container matColumnDef="product.price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="product.price">Price</th>
+        <td mat-cell *matCellDef="let row">{{ row.product.price | currency: 'USD': 'symbol':'1.2'}}</td>
       </ng-container>
 
       <!-- tax Column -->
@@ -53,7 +74,7 @@
         <td mat-cell *matCellDef="let row">
             <button mat-icon-button color="primary" [routerLink]="['/detail', row.id]"><mat-icon>remove_red_eye</mat-icon></button>
             <button mat-icon-button color="warn" [routerLink]="['/update', row.id]"><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button color="accent" [routerLink]="['/delete', row.id]"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="accent" (click)="openModal(deleteModal, row.id)"><mat-icon>delete</mat-icon></button>
         </td>
       </ng-container>
 
@@ -69,8 +90,35 @@
     </table>
 
     <mat-paginator
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      aria-label="Select page of users"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
     ></mat-paginator>
   </div>
 </div>
+
+<!-- confirmation-modal.component.html -->
+<ng-template #deleteModal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="close" (click)="bsModalRef.hide()" aria-label="Close">
+      <span aria-hidden="true" style="padding: 3px !important;">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Name: {{ consignmentById?.product?.name }}</p>
+    <p>Origin: {{ consignmentById?.product?.origin }}</p>
+    <p>Price: {{ consignmentById?.product?.price }}</p>
+    <p>Quantity: {{ consignmentById?.quantity }}</p>
+    <p>Tax: {{ consignmentById?.tax }}</p>
+    <p>Import Date: {{ consignmentById?.importDate }}</p>
+    <p>Export Date: {{ consignmentById?.exportDate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="delete()">Confirm</button>
+    <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Cancel</button>
+  </div>
+</ng-template>
+<!-- <div *ngIf="bsModalRef">
+  <div class="modal-backdrop fade show"></div>
+</div> -->

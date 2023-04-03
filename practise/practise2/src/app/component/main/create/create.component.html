@@ -1,16 +1,16 @@
 <div class="container mt-4">
   <div class="logo text-center ">
-    <h1>Create new customer</h1>
+    <h1>Create new Consingment</h1>
   </div>
 
   <div class="create-form m-3 p-4">
     <form [formGroup]="consignmentForm" (ngSubmit)="save()">
       <div class="row">
 
-        <div class="col-md-6 mb-2">
+        <div class="col-md-6 mb-2 id">
           <mat-form-field appearance="outline">
             <mat-label>Id Consignment</mat-label>
-            <input formControlName="id" matInput placeholder="Id Consignment" />
+            <input formControlName="id" matInput placeholder="Id Consignment" readonly/>
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <!-- <mat-error
               *ngIf="consignmentForm.get('id').errors?.required && consignmentForm.get('id').touched">
@@ -22,7 +22,7 @@
         <div class="col-md-6 mb-2">
           <mat-form-field appearance="outline">
             <mat-label>Quantity</mat-label>
-            <input formControlName="quantity" matInput placeholder="Quantity" />
+            <input type="number" formControlName="quantity" matInput placeholder="Quantity" />
             <mat-icon matSuffix><i class="fa fa-text-height" aria-hidden="true"></i></mat-icon>
             <mat-error
               *ngIf="consignmentForm.get('quantity').errors?.required && consignmentForm.get('quantity').touched">

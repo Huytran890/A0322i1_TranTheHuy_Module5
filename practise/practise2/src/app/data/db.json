@@ -134,34 +134,6 @@
       "importDate": "2023-04-04",
       "exportDate": "2023-04-05",
       "tax": "16%"
-    },
-    {
-      "id": 8,
-      "product": {
-        "id": 2,
-        "name": "Sweater",
-        "origin": "France",
-        "price": 53.3,
-        "unit": "EUR"
-      },
-      "quantity": "12",
-      "importDate": "2023-04-29",
-      "exportDate": "2023-04-30",
-      "tax": "12%"
-    },
-    {
-      "id": 9,
-      "product": {
-        "id": 5,
-        "name": "Leather Jacket",
-        "origin": "China",
-        "price": 13.3,
-        "unit": "yuan"
-      },
-      "quantity": "15",
-      "importDate": "2023-04-14",
-      "exportDate": "2023-04-15",
-      "tax": "15"
     }
   ]
 }

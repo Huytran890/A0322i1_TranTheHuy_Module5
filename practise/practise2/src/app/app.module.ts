@@ -31,6 +31,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatListModule} from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { ListComponent } from './component/main/list/list.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+/* Ngx-boostrap */
+import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -66,8 +70,11 @@ import { ListComponent } from './component/main/list/list.component';
     MatProgressBarModule,
     MatListModule,
     MatChipsModule,
+    MatTooltipModule,
+
+    ModalModule.forRoot(),
   ],
-  providers: [],
+  providers: [BsModalRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

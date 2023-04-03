@@ -11,8 +11,8 @@ import { ProductService } from "src/app/services/product/product.service";
   styleUrls: ["./create.component.scss"],
 })
 export class CreateComponent implements OnInit {
-  consignmentForm: FormGroup;
-  products: Array<product> = [];
+  public consignmentForm: FormGroup;
+  public products: Array<product> = [];
 
   constructor(
     private productService: ProductService,
@@ -20,22 +20,23 @@ export class CreateComponent implements OnInit {
     private router: Router
   ) {
     this.consignmentForm = new FormGroup({
-      id: new FormControl("", []),
-      product: new FormControl("", [Validators.required]),
+      id: new FormControl(),
       quantity: new FormControl("", [Validators.required]),
+      tax: new FormControl("", [Validators.required]),
       importDate: new FormControl("", [Validators.required]),
       exportDate: new FormControl("", [Validators.required]),
-      tax: new FormControl("", [Validators.required]),
+      product: new FormControl("", [Validators.required]),
     });
 
     this.productService.getAllProduct().subscribe(
-      (value) => {
-        console.log(value);
-        this.products = value;
+      (next) => {
+        console.log(next);
+        this.products = next;
       },
       (error) => {
         console.log("Not found list products!");
-      }
+      },
+      () => {}
     );
   }
 
@@ -52,14 +53,16 @@ export class CreateComponent implements OnInit {
   save(): void {
     console.log(this.consignmentForm);
     if (this.consignmentForm.valid) {
-      const consingment = this.consignmentForm.value;
-      consingment.importDate = this.parseDate(consingment.importDate);
-      consingment.exportDate = this.parseDate(consingment.exportDate);
-      this.consignmentService.addNewConsignment(consingment).subscribe((value) => {
-          console.log("success full adding!");
-          this.router.navigateByUrl('/list').then(success => {
+      const consignment = this.consignmentForm.value;
+      consignment.importDate = this.parseDate(consignment.importDate);
+      consignment.exportDate = this.parseDate(consignment.exportDate);
+      this.consignmentService
+        .addNewConsignment(consignment)
+        .subscribe((value) => {
+          console.log("Success Adding!");
+          this.router.navigateByUrl("/list").then((success) => {
             this.consignmentForm.reset();
-          })
+          });
         });
     }
   }

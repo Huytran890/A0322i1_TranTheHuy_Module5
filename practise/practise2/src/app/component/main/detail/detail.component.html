@@ -1,6 +1,6 @@
 <section class="container">
   <h1 class="heading">
-    <span>d</span>
+    <span>D</span>
     <span>e</span>
     <span>t</span>
     <span>a</span>
@@ -30,6 +30,20 @@
           <div matLine>
             Quantity:
             <button mat-button>{{ consignment?.quantity }}</button>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item>
+          <div matLine>
+            Origin:
+            <button mat-button>{{ consignment?.product?.origin }}</button>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item>
+          <div matLine>
+            Price:
+            <button mat-button>{{ consignment?.product?.price | currency: 'USD': 'symbol':'1.2'}}</button>
           </div>
         </mat-list-item>
 
