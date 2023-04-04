@@ -13,15 +13,29 @@ td.mat-footer-cell:last-of-type {
 
 .space {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.button-add {
-  position: relative;
-  right: 20px;
+// .button-add {
+//   position: relative;
+//   right: 20px;
+// }
+
+.formSearch {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }
+
+.formSearch .btn {
+  padding: 8px 10px !important;
+  border-radius: 6px;
+}
+
+
 
 .heading {
   text-align: center;

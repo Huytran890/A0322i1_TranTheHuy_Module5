@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { consignment } from 'src/app/models/consignment';
 
 @Injectable({
@@ -36,4 +36,17 @@ export class ConsignmentService {
   findByProductName(productName: string): Observable<consignment[]> {
     return this.httpClient.get<consignment[]>(`${this.url}?product.name_like=`+productName.trim());
   }
+
+  findByDate(importDate: Date, exportDate: Date): Observable<consignment[]> {
+    if(importDate && exportDate) {
+      return this.httpClient.get<consignment[]>(`${this.url}?importDate_gte=${importDate.toISOString()}&exportDate_lte=${exportDate.toISOString()}`);
+    } else if(importDate) {
+      return this.httpClient.get<consignment[]>(`${this.url}?importDate_gte=${importDate.toISOString()}`);
+    } else if(exportDate) {
+      return this.httpClient.get<consignment[]>(`${this.url}?exportDate_lte=${exportDate.toISOString()}`);
+    } else {
+      return this.httpClient.get<consignment[]>(`${this.url}`);
+    }
+
+  };
 }

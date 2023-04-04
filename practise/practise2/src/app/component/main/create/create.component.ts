@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
       quantity: new FormControl('', [Validators.required, Validators.min(1)]),
       tax: new FormControl('', [
         Validators.required, 
-        // Validators.pattern('^(?:[1-2]\d|\d{1,2}|%|[1-2]\d?%)|(\d{2}\.\d{1,2}%)|(30%)$'),
+        Validators.pattern('^(?!-)([1-9]|[1-2][0-9]|30)%$'),
       ]),
       importDate: new FormControl('', [
         Validators.required,
@@ -71,25 +71,6 @@ export class CreateComponent implements OnInit {
   //   return null;
   // };
 
-  // Custom validator for export date must be rather than import date 1 date.
-  // validateDateRange(control: AbstractControl) {
-  //   const importDate = control.get('importDate')?.value;
-  //   const exportDate = control.get('exportDate')?.value;
-
-  //   if (importDate && exportDate) {
-  //     const importDateObj = new Date(importDate).getTime();
-  //     const exportDateObj = new Date(exportDate).getTime();
-  //     const today = new Date();
-  //     const oneDay = 24 * 60 * 60 * 1000; // 1 day in milliseconds
-
-  //     if (exportDateObj < importDateObj || (exportDateObj - importDateObj) / oneDay < 1 || exportDateObj < today.setHours(0, 0, 0, 0)) {
-  //       control.get('exportDate')?.setErrors({ invalidDateRange: true });
-  //       return { invalidDateRange: true };
-  //     }
-  //   }
-
-  //   return null;
-  // };
 
   ngOnInit(): void {};
 
@@ -121,6 +102,7 @@ export class CreateComponent implements OnInit {
   };
 }
 
+// Custom validator for export date must be rather than import date 1 date.
 export function validateExportDate(control: AbstractControl): ValidationErrors | null {
   const exportDate = new Date(control.value).setHours(0, 0, 0, 0);
   const importDate = control.parent?.get('importDate')?.value;

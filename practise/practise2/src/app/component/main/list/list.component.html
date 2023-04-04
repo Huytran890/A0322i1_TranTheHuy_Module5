@@ -12,7 +12,8 @@
       <mat-label>Search Name</mat-label>
       <input matInput (keyup)="searchByName($event)" placeholder="Ex. Huy" #input/>
     </mat-form-field>
-    <!-- <form>
+
+    <form [formGroup]="myForm" class="formSearch" (ngSubmit)="searchByDate()">
       <mat-form-field>
         <mat-label>Import Date</mat-label>
         <input formControlName="importDate" matInput [matDatepicker]="picker"/>
@@ -20,15 +21,19 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+
       <mat-form-field>
         <mat-label>Export Date</mat-label>
-        <input formControlName="importDate" matInput [matDatepicker]="picker1"/>
+        <input formControlName="exportDate" matInput [matDatepicker]="picker1"/>
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
-      <button type="button" class="btn btn-primary">Search</button>
-    </form> -->
+      <div>
+        <button type="submit" class="btn btn-info">Search</button>
+      </div>
+    </form>
+
     <div>
       <button mat-raised-button color="primary" class="button-add" routerLink="/create">+ Add new</button>
     </div>

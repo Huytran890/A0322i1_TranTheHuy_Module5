@@ -118,16 +118,17 @@
             <mat-form-field appearance="outline">
               <mat-label>Tax</mat-label>
               <input formControlName="tax" matInput placeholder="Tax"/>
-              <mat-icon matSuffix>line_weight</mat-icon>
+              <!-- <mat-icon matSuffix>line_weight</mat-icon> -->
+              <mat-icon matSuffix> monetization_on</mat-icon>
               <mat-hint>Follow in percent</mat-hint>
               <mat-error
                 *ngIf="updateForm.get('tax').errors?.required && updateForm.get('tax').touched">
                 Tax is <strong>required!</strong>
               </mat-error>
-              <!-- <mat-error
-                *ngIf="consignmentForm.get('tax').errors?.pattern && consignmentForm.get('tax').touched">
+              <mat-error
+                *ngIf="updateForm.get('tax').errors?.pattern && updateForm.get('tax').touched">
                 Tax format is <strong>(0/00-%),</strong> and must be less than or equal to <strong>30%</strong>
-              </mat-error> -->
+              </mat-error>
             </mat-form-field>
           </div>
   

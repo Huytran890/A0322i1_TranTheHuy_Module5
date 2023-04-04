@@ -5,6 +5,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort, Sort } from "@angular/material/sort";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-list",
@@ -19,6 +20,8 @@ export class ListComponent implements OnInit {
   onClose: any;
 
   consignmentById: consignment;
+
+  myForm: FormGroup;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -35,7 +38,12 @@ export class ListComponent implements OnInit {
     "action",
   ];
   constructor(private consignmentService: ConsignmentService,
-              private modalService: BsModalService, public bsModalRef: BsModalRef) {}
+              private modalService: BsModalService, public bsModalRef: BsModalRef) {
+      this.myForm = new FormGroup({
+        importDate: new FormControl(''),
+        exportDate: new FormControl(''),
+      });
+  }
 
   ngOnInit(): void {
     this.getAllCOnsignment();
@@ -109,8 +117,22 @@ export class ListComponent implements OnInit {
     );
   };
 
-  searchByDate(event: Event) {
+  searchByDate() {
+    const importDate = this.myForm.get('importDate').value;
+    const exportDate = this.myForm.get('exportDate').value;
 
+    console.log(importDate);
+    console.log(exportDate);
+    
+
+    this.consignmentService.findByDate(importDate, exportDate).subscribe(result => {
+      if(result.length === 0) {
+        this.dataSource.data = [];
+      } else {
+        this.consignments = result;
+        this.dataSource.data = this.consignments;
+      }
+    });
   };
 
 }

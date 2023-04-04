@@ -80,7 +80,10 @@ export class UpdateComponent implements OnInit {
         id: new FormControl(consignment.id),
         idConsignment: new FormControl(consignment.idConsignment, [Validators.required, Validators.pattern('^LH-[0-9]{4}$')]),
         quantity: new FormControl(consignment.quantity, [Validators.required, Validators.min(1)]),
-        tax: new FormControl(consignment.tax, [Validators.required]),
+        tax: new FormControl(consignment.tax, [
+          Validators.required,
+          Validators.pattern('^(?!-)([1-9]|[1-2][0-9]|30)%$'),
+        ]),
         importDate: new FormControl(consignment.importDate, [
           Validators.required,
           this.validateImportDate
