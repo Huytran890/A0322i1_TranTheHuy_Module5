@@ -94,12 +94,23 @@ export class ListComponent implements OnInit {
   };
 
 
-  applyFilter(event: Event) {
+  searchByName(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.consignmentService.findByProductName(filterValue.trim().toLowerCase()).subscribe(
+      (data) => {
+        this.dataSource.data = data;
+        if (this.dataSource.paginator) {
+          this.dataSource.paginator.firstPage();
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  searchByDate(event: Event) {
+
+  };
+
 }

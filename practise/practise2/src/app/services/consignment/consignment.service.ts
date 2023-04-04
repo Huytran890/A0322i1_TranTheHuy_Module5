@@ -34,6 +34,6 @@ export class ConsignmentService {
   }
 
   findByProductName(productName: string): Observable<consignment[]> {
-    return this.httpClient.get<consignment[]>(`${this.url}?product.name_like=${productName}`)
+    return this.httpClient.get<consignment[]>(`${this.url}?product.name_like=`+productName.trim());
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from "@angular/forms";
 import { Router } from "@angular/router";
 import { product } from "src/app/models/product";
 import { ConsignmentService } from "src/app/services/consignment/consignment.service";
@@ -25,16 +25,16 @@ export class CreateComponent implements OnInit {
       quantity: new FormControl('', [Validators.required, Validators.min(1)]),
       tax: new FormControl('', [
         Validators.required, 
-        Validators.pattern('^(?:[1-2]\d|\d{1,2}|%|[1-2]\d?%)|(\d{2}\.\d{1,2}%)|(30%)$')
+        // Validators.pattern('^(?:[1-2]\d|\d{1,2}|%|[1-2]\d?%)|(\d{2}\.\d{1,2}%)|(30%)$'),
       ]),
       importDate: new FormControl('', [
         Validators.required,
-        // this.validateImportDate
+        this.validateImportDate
       ]),
       exportDate: new FormControl('', [
         Validators.required,
         // this.validateExportDate,
-        // this.validateDateRange,
+        validateExportDate
       ]),
       product: new FormControl('', [Validators.required]),
     });
@@ -52,7 +52,17 @@ export class CreateComponent implements OnInit {
   };
 
   // Custom validator for import date
-  // validateImportDate(control: FormControl) {
+  validateImportDate(control: FormControl) {
+    const inputDate = new Date(control.value).getTime();
+    const today = new Date().setHours(0, 0, 0, 0);
+    if (inputDate < today) {
+      return { invalidDate: true };
+    }
+    return null;
+  };
+
+  // Custom validator for export date
+  // validateExportDate(control: FormControl) {
   //   const inputDate = new Date(control.value).getTime();
   //   const today = new Date();
   //   if (inputDate < today.getTime()) {
@@ -61,26 +71,23 @@ export class CreateComponent implements OnInit {
   //   return null;
   // };
 
-  // Custom validator for export date
-  // validateExportDate(control: FormControl) {
-  //   const inputDate = new Date(control.value);
-  //   const today = new Date();
-  //   if (inputDate < today) {
-  //     return { invalidDate: true };
-  //   }
-  //   return null;
-  // };
-
   // Custom validator for export date must be rather than import date 1 date.
-  // validateDateRange(formGroup: FormGroup) {
-  //   const importDate = new Date(formGroup.get("importDate").value).getTime();
-  //   const exportDate = new Date(formGroup.get("exportDate").value).getTime();
-  //   const oneDay = 24 * 60 * 60 * 1000; // 1 day in milliseconds
-  //   if (exportDate < importDate || (exportDate - importDate) / oneDay < 1) {
-  //     formGroup.get("exportDate").setErrors({ invalidDateRange: true });
-  //   } else {
-  //     formGroup.get("exportDate").setErrors(null);
+  // validateDateRange(control: AbstractControl) {
+  //   const importDate = control.get('importDate')?.value;
+  //   const exportDate = control.get('exportDate')?.value;
+
+  //   if (importDate && exportDate) {
+  //     const importDateObj = new Date(importDate).getTime();
+  //     const exportDateObj = new Date(exportDate).getTime();
+  //     const today = new Date();
+  //     const oneDay = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+
+  //     if (exportDateObj < importDateObj || (exportDateObj - importDateObj) / oneDay < 1 || exportDateObj < today.setHours(0, 0, 0, 0)) {
+  //       control.get('exportDate')?.setErrors({ invalidDateRange: true });
+  //       return { invalidDateRange: true };
+  //     }
   //   }
+
   //   return null;
   // };
 
@@ -100,6 +107,8 @@ export class CreateComponent implements OnInit {
       const consignment = this.consignmentForm.value;
       consignment.importDate = this.parseDate(consignment.importDate);
       consignment.exportDate = this.parseDate(consignment.exportDate);
+      console.log(consignment);
+      
       this.consignmentService
         .addNewConsignment(consignment)
         .subscribe((value) => {
@@ -110,4 +119,22 @@ export class CreateComponent implements OnInit {
         });
     }
   };
+}
+
+export function validateExportDate(control: AbstractControl): ValidationErrors | null {
+  const exportDate = new Date(control.value).setHours(0, 0, 0, 0);
+  const importDate = control.parent?.get('importDate')?.value;
+  const today = new Date().setHours(0, 0, 0, 0);
+  
+  // Check if export date is at least 1 day after import date
+  if (exportDate <= importDate || (exportDate - importDate) < 86400000) {
+    return { invalidDateRange: true };
+  }
+
+  // Check if export date is today or in the future
+  if (exportDate < today) {
+    return { invalidExportDate: true };
+  }
+
+  return null;
 }

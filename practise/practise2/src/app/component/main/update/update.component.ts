@@ -1,7 +1,7 @@
 import { ConsignmentService } from './../../../services/consignment/consignment.service';
 import { ProductService } from './../../../services/product/product.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { product } from 'src/app/models/product';
 
@@ -59,19 +59,60 @@ export class UpdateComponent implements OnInit {
     }
   };
 
+  // Custom validator for import date
+  validateImportDate(control: FormControl) {
+    const inputDate = new Date(control.value).getTime();
+    const today = new Date().setHours(0, 0, 0, 0);
+    if (inputDate < today) {
+      return { invalidDate: true };
+    }
+    return null;
+  };
+
+
+
+
   getConsignment(idRecieved: number) {
     return this.consignmentService.findById(idRecieved).subscribe(consignment => {
       console.log(consignment);
       
       this.updateForm = new FormGroup({
         id: new FormControl(consignment.id),
-        quantity: new FormControl(consignment.quantity, [Validators.required]),
+        idConsignment: new FormControl(consignment.idConsignment, [Validators.required, Validators.pattern('^LH-[0-9]{4}$')]),
+        quantity: new FormControl(consignment.quantity, [Validators.required, Validators.min(1)]),
         tax: new FormControl(consignment.tax, [Validators.required]),
-        importDate: new FormControl(consignment.importDate, [Validators.required]),
-        exportDate: new FormControl(consignment.exportDate, [Validators.required]),
+        importDate: new FormControl(consignment.importDate, [
+          Validators.required,
+          this.validateImportDate
+        ]),
+        exportDate: new FormControl(consignment.exportDate, [
+          Validators.required,
+          // this.validateExportDate,
+          validateExportDate
+        ]),
         product: new FormControl(consignment.product, [Validators.required]),
       });
+
     });
   };
 
+}
+
+
+export function validateExportDate(control: AbstractControl): ValidationErrors | null {
+  const exportDate = new Date(control.value).setHours(0, 0, 0, 0);
+  const importDate = control.parent?.get('importDate')?.value;
+  const today = new Date().setHours(0, 0, 0, 0);
+  
+  // Check if export date is at least 1 day after import date
+  if (exportDate <= importDate || (exportDate - importDate) < 86400000) {
+    return { invalidDateRange: true };
+  }
+
+  // Check if export date is today or in the future
+  if (exportDate < today) {
+    return { invalidExportDate: true };
+  }
+
+  return null;
 }

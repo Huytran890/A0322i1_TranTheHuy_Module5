@@ -55,16 +55,16 @@
     {
       "id": 2,
       "idConsignment": "LH-1256",
-      "quantity": 1,
-      "importDate": "2022-06-21",
-      "exportDate": "2022-08-13",
-      "tax": "20%",
+      "quantity": 2,
+      "tax": "56%",
+      "importDate": "2024-05-08",
+      "exportDate": "2024-06-08",
       "product": {
-        "id": 2,
-        "name": "Sweater",
-        "origin": "France",
-        "price": 53.3,
-        "unit": "EUR"
+        "id": 3,
+        "name": "Hoodie",
+        "origin": "Viet Nam",
+        "price": 46.2,
+        "unit": "CAD"
       }
     },
     {
@@ -111,6 +111,22 @@
         "price": 13.3,
         "unit": "yuan"
       }
+    },
+    {
+      "id": 6,
+      "idConsignment": "LH-1779",
+      "quantity": 70,
+      "tax": "70%",
+      "importDate": "2023-04-05",
+      "exportDate": "2023-04-07",
+      "product": {
+        "id": 3,
+        "name": "Hoodie",
+        "origin": "Viet Nam",
+        "price": 46.2,
+        "unit": "CAD"
+      }
     }
+    
   ]
 }
