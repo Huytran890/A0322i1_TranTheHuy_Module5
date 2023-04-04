@@ -20,10 +20,16 @@
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-      <!-- ID Column -->
+      <!-- No Column -->
       <ng-container matColumnDef="no">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
         <td mat-cell *matCellDef="let row; let i = index;">{{ i+1 }}</td>
+      </ng-container>
+
+      <!-- Id Consignment Column -->
+      <ng-container matColumnDef="idConsignment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Consignment</th>
+        <td mat-cell *matCellDef="let row">{{ row.idConsignment }}</td>
       </ng-container>
       
       <!-- product name Column -->
@@ -102,10 +108,11 @@
   <div class="modal-header">
     <h4 class="modal-title">{{ title }}</h4>
     <button type="button" class="close" (click)="bsModalRef.hide()" aria-label="Close">
-      <span aria-hidden="true" style="padding: 3px !important;">&times;</span>
+      <span aria-hidden="true" style="padding: 0px 5px !important;">&times;</span>
     </button>
   </div>
   <div class="modal-body">
+    <p>ID Consignment: {{ consignmentById?.idConsignment }}</p>
     <p>Name: {{ consignmentById?.product?.name }}</p>
     <p>Origin: {{ consignmentById?.product?.origin }}</p>
     <p>Price: {{ consignmentById?.product?.price }}</p>

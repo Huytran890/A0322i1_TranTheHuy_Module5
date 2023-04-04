@@ -7,15 +7,28 @@
     <form [formGroup]="consignmentForm" (ngSubmit)="save()">
       <div class="row">
 
-        <div class="col-md-6 mb-2 id">
+        <div class="col-md-12 id">
           <mat-form-field appearance="outline">
-            <mat-label>Id Consignment</mat-label>
-            <input formControlName="id" matInput placeholder="Id Consignment" readonly/>
+            <mat-label>ID</mat-label>
+            <input formControlName="id" matInput placeholder="ID"/>
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <!-- <mat-error
-              *ngIf="consignmentForm.get('id').errors?.required && consignmentForm.get('id').touched">
-              Consignment's id is <strong>required!</strong>
-            </mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <!-- ID Consignment -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>ID Consignment</mat-label>
+            <input formControlName="idConsignment" matInput placeholder="ID Consignment"/>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-error
+              *ngIf="consignmentForm.get('idConsignment').errors?.required && consignmentForm.get('idConsignment').touched">
+              ID Consignment is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="consignmentForm.get('idConsignment').errors?.pattern && consignmentForm.get('idConsignment').touched">
+              ID must be formatted <strong>(LH-0000)!</strong>
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -27,6 +40,10 @@
             <mat-error
               *ngIf="consignmentForm.get('quantity').errors?.required && consignmentForm.get('quantity').touched">
               Quantity is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="consignmentForm.get('quantity').errors?.min && consignmentForm.get('quantity').touched">
+              Quantity must be greater than <strong>1!</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -42,6 +59,10 @@
               *ngIf="consignmentForm.get('importDate').errors?.required && consignmentForm.get('importDate').touched">
               Import Date is <strong>required!</strong>
             </mat-error>
+            <!-- <mat-error
+              [ngIf]="consignmentForm.hasError('invalidDate') && consignmentForm.get('importDate').touched">
+              Import Date must be greater than <strong>current Date!</strong>
+            </mat-error> -->
           </mat-form-field>
         </div>
 
@@ -56,6 +77,14 @@
               *ngIf="consignmentForm.get('exportDate').errors?.required && consignmentForm.get('exportDate').touched">
               Export Date is <strong>required!</strong>
             </mat-error>
+            <!-- <mat-error
+              *ngIf="consignmentForm.get('exportDate').errors?.validateExportDate && consignmentForm.get('exportDate').touched">
+              Export Date must be greater than <strong>current Date!</strong>
+            </mat-error> -->
+            <!-- <mat-error
+              *ngIf="consignmentForm.get('exportDate').errors?.validateDateRange && consignmentForm.get('exportDate').touched">
+              Export Date must be greater than <strong>import date at least 1 date!</strong>
+            </mat-error> -->
           </mat-form-field>
         </div>
 
@@ -93,6 +122,10 @@
               *ngIf="consignmentForm.get('tax').errors?.required && consignmentForm.get('tax').touched">
               Tax is <strong>required!</strong>
             </mat-error>
+            <!-- <mat-error
+              *ngIf="consignmentForm.get('tax').errors?.pattern && consignmentForm.get('tax').touched">
+              Tax format is <strong>(0/00-%),</strong> and must be less than or equal to <strong>30%</strong>
+            </mat-error> -->
           </mat-form-field>
         </div>
 

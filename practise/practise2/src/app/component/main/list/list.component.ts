@@ -24,6 +24,7 @@ export class ListComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = [
     "no",
+    "idConsignment",
     "product.name",
     "quantity",
     "product.origin",
@@ -81,8 +82,8 @@ export class ListComponent implements OnInit {
     if (!this.idToDelete) return;
     this.consignmentService.deleteById(this.idToDelete).subscribe(next => {
       // this.onClose.next('confirm');
-      // this.getAllCOnsignment();
       this.bsModalRef.hide();
+      this.getAllCOnsignment();
     });
   }; 
 
@@ -90,7 +91,7 @@ export class ListComponent implements OnInit {
     this.consignmentService.findById(id).subscribe(next => {
       this.consignmentById = next;
     });
-  }
+  };
 
 
   applyFilter(event: Event) {
