@@ -3,6 +3,7 @@ import { ProductService } from './../../../services/product/product.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/models/product';
 
 @Component({
@@ -16,7 +17,8 @@ export class UpdateComponent implements OnInit {
   public id: number;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
-              private productService: ProductService, private consignmentService: ConsignmentService) {
+              private productService: ProductService, private consignmentService: ConsignmentService,
+              private toastr: ToastrService) {
     
     this.productService.getAllProduct().subscribe(next => {
       console.log(next);
@@ -53,7 +55,17 @@ export class UpdateComponent implements OnInit {
       this.consignmentService.updateById(consignment, this.id).subscribe(value => {
         console.log("Success Updating!");
         this.router.navigateByUrl('/list').then(success => {
+          this.toastr.success("Successful Updating!", "Notification", {
+            timeOut: 2000,
+          });
           this.updateForm.reset();
+        }, error => {
+          console.log(error);
+          this.toastr.error(
+            "Update failed!, Please check the input data",
+            "Notification",
+            { timeOut: 2000 }
+          );
         })
       })
     }

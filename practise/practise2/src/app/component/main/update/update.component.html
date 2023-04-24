@@ -1,7 +1,12 @@
 <div class="container mt-4">
-    <div class="logo text-center ">
-      <h1>Update Consingment</h1>
-    </div>
+  <h1 class="heading">
+    <span>U</span>
+    <span>p</span>
+    <span>d</span>
+    <span>a</span>
+    <span>t</span>
+    <span>e</span>
+  </h1>
   
     <div class="create-form m-3 p-4">
       <form [formGroup]="updateForm" *ngIf="updateForm" (ngSubmit)="update(id)">
@@ -127,7 +132,7 @@
               </mat-error>
               <mat-error
                 *ngIf="updateForm.get('tax').errors?.pattern && updateForm.get('tax').touched">
-                Tax format is <strong>(0/00-%),</strong> and must be less than or equal to <strong>30%</strong>
+                Tax is an <strong>Integer and %,</strong> and must be less than or equal to <strong>30%</strong>
               </mat-error>
             </mat-form-field>
           </div>

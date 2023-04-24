@@ -2,7 +2,14 @@
 <!-- <app-create></app-create> -->
 <!-- <app-list></app-list> -->
 <!-- <app-detail></app-detail> -->
+<mat-toolbar color="primary">
+  <h1>My App</h1>
+  <span class="example-spacer"></span>
 
+  <button mat-raised-button color="accent" routerLink="/list">
+    Home <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
 <router-outlet></router-outlet>
 
 <!-- <app-footer></app-footer> -->

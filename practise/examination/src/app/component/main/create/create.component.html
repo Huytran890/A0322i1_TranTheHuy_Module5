@@ -1,0 +1,256 @@
+<div class="container mt-4">
+  <h1 class="heading">
+    <span>C</span>
+    <span>r</span>
+    <span>e</span>
+    <span>a</span>
+    <span>t</span>
+    <span>e</span>
+  </h1>
+
+  <div class="create-form m-3 p-4">
+    <form [formGroup]="studentForm" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-md-12 id">
+          <mat-form-field appearance="outline">
+            <mat-label>ID</mat-label>
+            <input formControlName="id" matInput placeholder="ID" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <!-- ID Employee -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>ID Employee</mat-label>
+            <input
+              formControlName="studentCode"
+              matInput
+              placeholder="ID Employee"
+            />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-error
+              *ngIf="
+                studentForm.get('studentCode').errors?.required &&
+                studentForm.get('studentCode').touched
+              "
+            >
+              ID Employee is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                studentForm.get('studentCode').errors?.pattern &&
+                studentForm.get('studentCode').touched
+              "
+            >
+              ID must be formatted <strong>(NV-0000)!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Name -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="studentName" matInput placeholder="Name" />
+            <mat-icon matSuffix>person_pin</mat-icon>
+            <mat-error
+              *ngIf="
+                studentForm.get('studentName').errors?.required &&
+                studentForm.get('studentName').touched
+              "
+            >
+              Name is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                (studentForm.get('studentName').errors?.minlength ||
+                  studentForm.get('studentName').errors?.maxlength) &&
+                studentForm.get('studentName').touched
+              "
+            >
+              Name must be greater than
+              <strong>3 and up to 45 characters!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                studentForm.get('studentName').errors?.pattern &&
+                studentForm.get('studentName').touched
+              "
+            >
+              Name can't contain <strong>special characters!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+84 &nbsp;</span>
+            <input
+              type="tel"
+              formControlName="phoneNumber"
+              matInput
+              placeholder="555-123-789"
+            />
+            <mat-icon matSuffix>phone_in_talk</mat-icon>
+            <mat-hint>Follow in VN</mat-hint>
+            <mat-error
+              *ngIf="
+                studentForm.get('phoneNumber').errors?.required &&
+                studentForm.get('phoneNumber').touched
+              "
+            >
+              Phone Number is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                studentForm.get('phoneNumber').errors?.pattern&&
+                studentForm.get('phoneNumber').touched
+              "
+            >
+              Phone Number must be <strong>9 or 11 numbers!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              formControlName="email"
+              matInput
+              placeholder="Email"
+            />
+            <mat-icon matSuffix>mail_outline</mat-icon>
+            <mat-hint>abc@gmail.com</mat-hint>
+            <mat-error
+              *ngIf="
+                studentForm.get('email').errors?.required &&
+                studentForm.get('email').touched
+              "
+            >
+              Email is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                studentForm.get('email').errors?.email &&
+                studentForm.get('email').touched
+              "
+            >
+              Email must be formatted <strong>(xxx@xxx.xx)!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Gender -->
+        <!-- <div class="col-md-6 mt-3 mb-3">
+          <label id="example-radio-group-label">Gender</label>
+
+          <mat-radio-group class="example-radio-group" formControlName="gender">
+            <mat-radio-button class="example-radio-button" value="0"
+              >Male</mat-radio-button
+            >
+            <mat-radio-button class="example-radio-button" value="1"
+              >Female</mat-radio-button
+            >
+            <mat-radio-button class="example-radio-button" value="2"
+              >Others</mat-radio-button
+            >
+            <mat-error
+              *ngIf="
+                employeeForm.get('gender').errors?.required &&
+                employeeForm.get('gender').touched
+              "
+            >
+              Employee's gender is <strong>required!</strong>
+            </mat-error>
+          </mat-radio-group>
+        </div> -->
+
+        <!-- Project Name -->
+        <div class="col-md-6 mb-3">
+          <label class="select-option-label">Project Name</label>
+          <mat-form-field appearance="fill">
+            <mat-label>---None---</mat-label>
+            <mat-select formControlName="association">
+              <mat-option *ngFor="let group of groups" [value]="group">
+                {{ group.projectName }}
+              </mat-option>
+            </mat-select>
+            <mat-hint MatHint.align="end">Select your project ^</mat-hint>
+            <mat-error
+              *ngIf="
+                studentForm.get('association').errors?.required &&
+                studentForm.get('association').touched
+              "
+            >
+              Project Name is <strong>required!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Instructor Name -->
+        <div class="col-md-6 mb-3">
+          <label class="select-option-label">Instructor</label>
+          <mat-form-field appearance="fill">
+            <mat-label>---None---</mat-label>
+            <mat-select formControlName="instructor">
+              <mat-option
+                *ngFor="let instructor of instructors"
+                [value]="instructor"
+              >
+                {{ instructor.instructorName }}
+              </mat-option>
+            </mat-select>
+            <mat-hint MatHint.align="end">Select your Instructor ^</mat-hint>
+            <mat-error
+              *ngIf="
+                studentForm.get('instructor').errors?.required &&
+                studentForm.get('instructor').touched
+              "
+            >
+              Instructor is <strong>required!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Address</mat-label>
+              <textarea
+                formControlName="address"
+                matInput
+                placeholder="Ex. 12 Phan Châu Trinh, Đà nẵng"
+              ></textarea>
+              <mat-error
+                *ngIf="
+                  customerForm.get('address').errors?.required &&
+                  customerForm.get('address').touched">
+                Customer's address is <strong>required!</strong>
+              </mat-error>
+            </mat-form-field>
+          </div> -->
+      <!-- </div> -->
+
+      <div class="button-space">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="studentForm.invalid"
+          type="submit"
+        >
+          Submit
+        </button>
+
+        <button mat-raised-button color="accent" routerLink="/list">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

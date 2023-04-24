@@ -1,7 +1,12 @@
 <div class="container mt-4">
-  <div class="logo text-center ">
-    <h1>Create new Consingment</h1>
-  </div>
+  <h1 class="heading">
+    <span>C</span>
+    <span>r</span>
+    <span>e</span>
+    <span>a</span>
+    <span>t</span>
+    <span>e</span>
+  </h1>
 
   <div class="create-form m-3 p-4">
     <form [formGroup]="consignmentForm" (ngSubmit)="save()">
@@ -93,13 +98,13 @@
           <label id="example-radio-group-label">Gender</label>
 
           <mat-radio-group class="example-radio-group" formControlName="gender">
-            <mat-radio-button class="example-radio-button" value="0"
+            <mat-radio-button class="example-radio-button" [checked]="updateForm.get('gender').value === 0"
               >Male</mat-radio-button
             >
-            <mat-radio-button class="example-radio-button" value="1"
+            <mat-radio-button class="example-radio-button" [checked]="updateForm.get('gender').value === 1"
               >Female</mat-radio-button
             >
-            <mat-radio-button class="example-radio-button" value="2"
+            <mat-radio-button class="example-radio-button" [checked]="updateForm.get('gender').value === 2"
               >Others</mat-radio-button
             >
             <mat-error
@@ -127,7 +132,7 @@
             </mat-error>
             <mat-error
               *ngIf="consignmentForm.get('tax').errors?.pattern && consignmentForm.get('tax').touched">
-              Tax format is <strong>(0/00-%),</strong> and must be less than or equal to <strong>30%</strong>
+              Tax is an <strong>Integer and %,</strong> and must be less than or equal to <strong>30%</strong>
             </mat-error>
           </mat-form-field>
         </div>

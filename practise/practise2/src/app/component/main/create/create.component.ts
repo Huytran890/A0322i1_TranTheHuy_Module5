@@ -1,9 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+} from "@angular/forms";
 import { Router } from "@angular/router";
 import { product } from "src/app/models/product";
 import { ConsignmentService } from "src/app/services/consignment/consignment.service";
 import { ProductService } from "src/app/services/product/product.service";
+import { ToastrService } from "ngx-toastr";
+
 
 @Component({
   selector: "app-create",
@@ -17,26 +25,30 @@ export class CreateComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private consignmentService: ConsignmentService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.consignmentForm = new FormGroup({
       id: new FormControl(),
-      idConsignment: new FormControl('', [Validators.required, Validators.pattern('^LH-[0-9]{4}$')]),
-      quantity: new FormControl('', [Validators.required, Validators.min(1)]),
-      tax: new FormControl('', [
-        Validators.required, 
-        Validators.pattern('^(?!-)([1-9]|[1-2][0-9]|30)%$'),
-      ]),
-      importDate: new FormControl('', [
+      idConsignment: new FormControl("", [
         Validators.required,
-        this.validateImportDate
+        Validators.pattern("^LH-[0-9]{4}$"),
       ]),
-      exportDate: new FormControl('', [
+      quantity: new FormControl("", [Validators.required, Validators.min(1)]),
+      tax: new FormControl("", [
+        Validators.required,
+        Validators.pattern("^(?!-)([1-9]|[1-2][0-9]|30)%$"),
+      ]),
+      importDate: new FormControl("", [
+        Validators.required,
+        this.validateImportDate,
+      ]),
+      exportDate: new FormControl("", [
         Validators.required,
         // this.validateExportDate,
-        validateExportDate
+        validateExportDate,
       ]),
-      product: new FormControl('', [Validators.required]),
+      product: new FormControl("", [Validators.required]),
     });
 
     this.productService.getAllProduct().subscribe(
@@ -49,7 +61,7 @@ export class CreateComponent implements OnInit {
       },
       () => {}
     );
-  };
+  }
 
   // Custom validator for import date
   validateImportDate(control: FormControl) {
@@ -59,7 +71,7 @@ export class CreateComponent implements OnInit {
       return { invalidDate: true };
     }
     return null;
-  };
+  }
 
   // Custom validator for export date
   // validateExportDate(control: FormControl) {
@@ -71,8 +83,7 @@ export class CreateComponent implements OnInit {
   //   return null;
   // };
 
-
-  ngOnInit(): void {};
+  ngOnInit(): void {}
 
   parseDate(dateString: string): string {
     const date = new Date(dateString);
@@ -80,7 +91,7 @@ export class CreateComponent implements OnInit {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const day = ("0" + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
-  };
+  }
 
   save(): void {
     console.log(this.consignmentForm);
@@ -89,27 +100,40 @@ export class CreateComponent implements OnInit {
       consignment.importDate = this.parseDate(consignment.importDate);
       consignment.exportDate = this.parseDate(consignment.exportDate);
       console.log(consignment);
-      
-      this.consignmentService
-        .addNewConsignment(consignment)
-        .subscribe((value) => {
+
+      this.consignmentService.addNewConsignment(consignment).subscribe(
+        (value) => {
           console.log("Success Adding!");
           this.router.navigateByUrl("/list").then((success) => {
+            this.toastr.success("Successful Adding!", "Notification", {
+              timeOut: 2000,
+            });
             this.consignmentForm.reset();
           });
-        });
+        },
+        (error) => {
+          console.log(error);
+          this.toastr.error(
+            "Add failed!, Please check the input data",
+            "Notification",
+            { timeOut: 2000 }
+          );
+        }
+      );
     }
-  };
+  }
 }
 
 // Custom validator for export date must be rather than import date 1 date.
-export function validateExportDate(control: AbstractControl): ValidationErrors | null {
+export function validateExportDate(
+  control: AbstractControl
+): ValidationErrors | null {
   const exportDate = new Date(control.value).setHours(0, 0, 0, 0);
-  const importDate = control.parent?.get('importDate')?.value;
+  const importDate = control.parent?.get("importDate")?.value;
   const today = new Date().setHours(0, 0, 0, 0);
-  
+
   // Check if export date is at least 1 day after import date
-  if (exportDate <= importDate || (exportDate - importDate) < 86400000) {
+  if (exportDate <= importDate || exportDate - importDate < 86400000) {
     return { invalidDateRange: true };
   }
 
@@ -120,3 +144,4 @@ export function validateExportDate(control: AbstractControl): ValidationErrors |
 
   return null;
 }
+// 24 * 60 * 60 * 1000 = oneDay

@@ -1,0 +1,139 @@
+{
+  "instructors": [
+    {
+      "id": 1,
+      "name": "Nguyễn Thành Công"
+    },
+    {
+      "id": 2,
+      "name": "Đặng Chí Trung"
+    },
+    {
+      "id": 3,
+      "name": "Nguyễn Ngọc Anh Quốc"
+    },
+    {
+      "id": 4,
+      "name": "Trương Tấn Hải"
+    },
+    {
+      "id": 5,
+      "name": "Đoàn Phước Trung"
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "Nhóm 1",
+      "projectName": "Manage Coffee Shop"
+    },
+    {
+      "id": 2,
+      "name": "Nhóm 2",
+      "projectName": "Manage Library"
+    },
+    {
+      "id": 3,
+      "name": "Nhóm 3",
+      "projectName": "Manage Travels"
+    }
+  ],
+  "students": [
+    {
+      "id": 3,
+      "idStudent": "SV-1516",
+      "name": "Trần Thế Huy",
+      "email": "huytran@gmail.com",
+      "phoneNumber": "905783653",
+      "group": {
+        "id": 1,
+        "name": "Nhóm 1",
+        "projectName": "Manage Coffee Shop"
+      },
+      "instructor": {
+        "id": 3,
+        "name": "Nguyễn Quốc Ngọc Anh"
+      }
+    },
+    {
+      "id": 4,
+      "idStudent": "NV-1141",
+      "name": "Lê Nhĩ Khang",
+      "email": "nhikhang@gmail.com",
+      "phoneNumber": "905766396",
+      "group": {
+        "id": 1,
+        "name": "Nhóm 1",
+        "projectName": "Manage Coffee Shop"
+      },
+      "instructor": {
+        "id": 2,
+        "name": "Đặng Chí Trung"
+      }
+    },
+    {
+      "id": 5,
+      "idStudent": "NV-1879",
+      "name": "Lê Minh Tuấn",
+      "email": "minhtuan@gmail.com",
+      "phoneNumber": "903459786",
+      "group": {
+        "id": 3,
+        "name": "Nhóm 3",
+        "projectName": "Manage Travels"
+      },
+      "instructor": {
+        "id": 5,
+        "name": "Nguyễn Văn Trường Huy"
+      }
+    },
+    {
+      "id": 6,
+      "idStudent": "SV-1778",
+      "name": "Trung Bảo",
+      "email": "trungbao@gmail.com",
+      "phoneNumber": "916528417",
+      "group": {
+        "id": 3,
+        "name": "Nhóm 3",
+        "projectName": "Manage Travels"
+      },
+      "instructor": {
+        "id": 5,
+        "name": "Nguyễn Văn Trường Huy"
+      }
+    },
+    {
+      "id": 7,
+      "idStudent": "SV-1778",
+      "name": "Test",
+      "email": "trungbao@gmail.com",
+      "phoneNumber": "916528417",
+      "group": {
+        "id": 3,
+        "name": "Nhóm 3",
+        "projectName": "Manage Travels"
+      },
+      "instructor": {
+        "id": 5,
+        "name": "Nguyễn Văn Trường Huy"
+      }
+    },
+    {
+      "id": 8,
+      "idStudent": "SV-1779",
+      "name": "Test 11",
+      "email": "testnene@gmail.com",
+      "phoneNumber": "916528418",
+      "group": {
+        "id": 2,
+        "name": "Nhóm 2",
+        "projectName": "Manage Library"
+      },
+      "instructor": {
+        "id": 3,
+        "name": "Nguyễn Quốc Ngọc Anh"
+      }
+    }
+  ]
+}

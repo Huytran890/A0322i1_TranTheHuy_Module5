@@ -66,3 +66,17 @@ button:hover:last-child {
 .id mat-form-field {
   display: none;
 }
+
+.heading {
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+.heading span {
+  font-size: 3.5rem;
+  background-color: rgba(255, 165, 0, 0.2);
+  color: var(--primaryColor);
+  border-radius: 5px;
+  padding: 2px 10px;
+  margin: 0 2px;
+}

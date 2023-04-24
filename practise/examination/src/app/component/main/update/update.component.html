@@ -1,0 +1,206 @@
+<div class="container mt-4">
+  <h1 class="heading">
+    <span>U</span>
+    <span>p</span>
+    <span>d</span>
+    <span>a</span>
+    <span>t</span>
+    <span>e</span>
+  </h1>
+
+  <div class="create-form m-3 p-4">
+    <form [formGroup]="updateForm" *ngIf="updateForm" (ngSubmit)="update(id)">
+      <div class="row">
+
+        <div class="col-md-12 id">
+          <mat-form-field appearance="outline">
+            <mat-label>ID</mat-label>
+            <input formControlName="id" matInput placeholder="ID" readonly />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <!-- ID student -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>ID Consignment</mat-label>
+            <input
+              formControlName="studentCode"
+              matInput
+              placeholder="ID Student"
+              readonly
+            />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-error
+              *ngIf="
+                updateForm.get('studentCode').errors?.required &&
+                updateForm.get('studentCode').touched
+              "
+            >
+              ID Consignment is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                updateForm.get('studentCode').errors?.pattern &&
+                updateForm.get('studentCode').touched
+              "
+            >
+              ID must be formatted <strong>(SV-0000)!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Name -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="studentName" matInput placeholder="Name" />
+            <mat-icon matSuffix>person_pin</mat-icon>
+            <mat-error
+              *ngIf="
+                updateForm.get('studentName').errors?.required &&
+                updateForm.get('studentName').touched
+              "
+            >
+              Name is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                (updateForm.get('studentName').errors?.minlength ||
+                  updateForm.get('studentName').errors?.maxlength) &&
+                updateForm.get('studentName').touched
+              "
+            >
+              Name must be greater than
+              <strong>3 and up to 45 characters!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+84 &nbsp;</span>
+            <input
+              type="tel"
+              formControlName="phoneNumber"
+              matInput
+              placeholder="555-123-789"
+            />
+            <mat-icon matSuffix>phone_in_talk</mat-icon>
+            <mat-hint>Follow in VN</mat-hint>
+            <mat-error
+              *ngIf="
+                updateForm.get('phoneNumber').errors?.required &&
+                updateForm.get('phoneNumber').touched
+              "
+            >
+              Phone Number is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                updateForm.get('phoneNumber').errors?.pattern &&
+                updateForm.get('phoneNumber').touched
+              "
+            >
+              Phone Number must be <strong>(9 numbers)!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6 mb-2">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              formControlName="email"
+              matInput
+              placeholder="Email"
+            />
+
+            <mat-icon matSuffix>mail_outline</mat-icon>
+            <mat-hint>abc@gmail.com</mat-hint>
+            <mat-error
+              *ngIf="
+                updateForm.get('email').errors?.required &&
+                updateForm.get('email').touched
+              "
+            >
+              Email is <strong>required!</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                updateForm.get('email').errors?.email &&
+                updateForm.get('email').touched
+              "
+            >
+              Email must be formatted <strong>(xxx@xxx.xx)!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="select-option-label">Project Name</label>
+          <mat-form-field appearance="fill">
+            <mat-label>---None---</mat-label>
+            <mat-select formControlName="association">
+              <mat-option *ngFor="let group of groups" [value]="group">
+                {{ group.projectName }}
+              </mat-option>
+            </mat-select>
+            <mat-hint MatHint.align="end">Select your project ^</mat-hint>
+            <mat-error
+              *ngIf="
+                updateForm.get('association').errors?.required &&
+                updateForm.get('association').touched
+              "
+            >
+              Project Name is <strong>required!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label class="select-option-label">Instructor</label>
+          <mat-form-field appearance="fill">
+            <mat-label>---None---</mat-label>
+            <mat-select formControlName="instructor">
+              <mat-option
+                *ngFor="let instructor of instructors"
+                [value]="instructor"
+              >
+                {{ instructor.instructorName }}
+              </mat-option>
+            </mat-select>
+            <mat-hint MatHint.align="end">Select your Instructor ^</mat-hint>
+            <mat-error
+              *ngIf="
+                updateForm.get('instructor').errors?.required &&
+                updateForm.get('instructor').touched
+              "
+            >
+              Instructor is <strong>required!</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="button-space">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="updateForm.invalid"
+          type="submit"
+        >
+          Submit
+        </button>
+
+        <button mat-raised-button color="accent" routerLink="/list">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

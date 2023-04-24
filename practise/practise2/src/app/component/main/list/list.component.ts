@@ -6,6 +6,10 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort, Sort } from "@angular/material/sort";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { FormControl, FormGroup } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
+import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { DatePipe } from '@angular/common';
+import { SelectionModel } from "@angular/cdk/collections";
 
 @Component({
   selector: "app-list",
@@ -23,9 +27,12 @@ export class ListComponent implements OnInit {
 
   myForm: FormGroup;
 
+  public showSpinner = false;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = [
+    // "checkbox",
     "no",
     "idConsignment",
     "product.name",
@@ -37,8 +44,10 @@ export class ListComponent implements OnInit {
     "exportDate",
     "action",
   ];
+  // selection = new SelectionModel<consignment>(true, []);
   constructor(private consignmentService: ConsignmentService,
-              private modalService: BsModalService, public bsModalRef: BsModalRef) {
+              private modalService: BsModalService, public bsModalRef: BsModalRef,
+              private toastr: ToastrService, private datePipe: DatePipe) {
       this.myForm = new FormGroup({
         importDate: new FormControl(''),
         exportDate: new FormControl(''),
@@ -46,7 +55,11 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllCOnsignment();
+    this.showSpinner = true;
+    setTimeout(() => {
+      this.getAllCOnsignment();
+      this.showSpinner = false;
+    }, 1000)
   }
 
   getAllCOnsignment() {
@@ -92,6 +105,7 @@ export class ListComponent implements OnInit {
       // this.onClose.next('confirm');
       this.bsModalRef.hide();
       this.getAllCOnsignment();
+      this.toastr.success("Successful Deleting!", "Notification", {timeOut: 2000});
     });
   }; 
 
@@ -116,6 +130,60 @@ export class ListComponent implements OnInit {
       }
     );
   };
+
+  // deleteSelected() {
+  //   const selectedIds = this.selection.selected.map(item => item.id);
+  //   if (selectedIds.length > 0) {
+  //     if (confirm('Bạn có chắc muốn xóa các đối tượng đã chọn?')) {
+  //       this.consignmentService.deleteItems(selectedIds).subscribe(
+  //         response => {
+  //           // Refresh data
+  //           this.getAllCOnsignment();
+  //           // Clear selection
+  //           this.selection.clear();
+  //         },
+  //         error => {
+  //           console.error(error);
+  //         }
+  //       );
+  //     }
+  //   } else {
+  //     alert('Vui lòng chọn ít nhất một đối tượng để xóa.');
+  //   }
+  // };
+
+  // isAllSelected() {
+  //   const numSelected = this.selection.selected.length;
+  //   const numRows = this.dataSource.data.length;
+  //   return numSelected === numRows;
+  // }
+
+  // masterToggle() {
+  //   this.isAllSelected()
+  //     ? this.selection.clear()
+  //     : this.dataSource.data.forEach((row) => this.selection.select(row));
+  // }
+
+  // searchByDateI(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   const importDate = new Date(filterValue);
+  //   console.log(importDate);
+    
+  //   this.consignmentService.findByEDate(importDate).subscribe(
+  //     (data) => {
+  //       console.log(data);
+        
+  //       this.dataSource.data = data;
+  //       if (this.dataSource.paginator) {
+  //         this.dataSource.paginator.firstPage();
+  //       }
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // };
+
 
   searchByDate() {
     const importDate = this.myForm.get('importDate').value;

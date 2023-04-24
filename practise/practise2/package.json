@@ -25,6 +25,7 @@
     "font-awesome": "^4.7.0",
     "json-server": "^0.17.3",
     "ngx-bootstrap": "^5.6.0",
+    "ngx-toastr": "^12.1.0",
     "query-string": "^8.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

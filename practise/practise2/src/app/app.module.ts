@@ -12,8 +12,10 @@ import { DetailComponent } from './component/main/detail/detail.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 
 /* Material */
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -32,9 +34,14 @@ import {MatListModule} from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { ListComponent } from './component/main/list/list.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
-/* Ngx-boostrap */
-import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
+  /* ngx-toast */
+  import { ToastrModule } from 'ngx-toastr';
+
+  /* ngx-boostrap */
+  import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -54,6 +61,7 @@ import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     BrowserAnimationsModule,
 
+    MatToolbarModule,
     MatIconModule,
     MatSlideToggleModule,
     MatFormFieldModule,
@@ -71,10 +79,14 @@ import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
     MatListModule,
     MatChipsModule,
     MatTooltipModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
 
+    ToastrModule.forRoot(),
     ModalModule.forRoot(),
+
   ],
-  providers: [BsModalRef],
+  providers: [BsModalRef, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

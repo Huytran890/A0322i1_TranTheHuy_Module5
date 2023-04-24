@@ -40,16 +40,16 @@
     {
       "id": 1,
       "idConsignment": "LH-1234",
-      "quantity": 35,
-      "tax": "35%",
-      "importDate": "2022-12-23",
-      "exportDate": "2023-02-24",
+      "quantity": 31,
+      "tax": "21%",
+      "importDate": "2023-04-25",
+      "exportDate": "2023-04-26",
       "product": {
-        "id": 4,
-        "name": "Turtleneck",
-        "origin": "Canada",
-        "price": 27.8,
-        "unit": "AUD"
+        "id": 1,
+        "name": "T-shirt",
+        "origin": "korea",
+        "price": 29.9,
+        "unit": "USD"
       }
     },
     {
@@ -129,19 +129,48 @@
     },
     {
       "id": 7,
-      "idConsignment": "LH-7789",
-      "quantity": 21,
-      "tax": "24%",
-      "importDate": "2023-04-05",
-      "exportDate": "2023-04-06",
+      "idConsignment": "LH-1497",
+      "quantity": 12,
+      "tax": "19%",
+      "importDate": "2023-04-06",
+      "exportDate": "2023-04-07",
       "product": {
-        "id": 2,
-        "name": "Sweater",
-        "origin": "France",
-        "price": 53.3,
-        "unit": "EUR"
+        "id": 4,
+        "name": "Turtleneck",
+        "origin": "Canada",
+        "price": 27.8,
+        "unit": "AUD"
+      }
+    },
+    {
+      "id": 8,
+      "idConsignment": "LH-1334",
+      "quantity": 1,
+      "tax": "12%",
+      "importDate": "2023-04-14",
+      "exportDate": "2023-04-15",
+      "product": {
+        "id": 1,
+        "name": "T-shirt",
+        "origin": "korea",
+        "price": 29.9,
+        "unit": "USD"
+      }
+    },
+    {
+      "id": 9,
+      "idConsignment": "LH-1334",
+      "quantity": 1,
+      "tax": "12%",
+      "importDate": "2023-04-14",
+      "exportDate": "2023-04-15",
+      "product": {
+        "id": 1,
+        "name": "T-shirt",
+        "origin": "korea",
+        "price": 29.9,
+        "unit": "USD"
       }
     }
-    
   ]
 }

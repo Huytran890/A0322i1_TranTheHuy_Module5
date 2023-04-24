@@ -25,6 +25,11 @@ export class ConsignmentService {
     return this.httpClient.delete(`${this.url}/${id}`);
   }
 
+  deleteItems(itemIds: number[]): Observable<any> {
+    const ids = itemIds.join(',');
+    return this.httpClient.delete<any>(`${this.url}?ids=${ids}`);
+  }
+
   findById(id: number): Observable<consignment> {
     return this.httpClient.get<consignment>(`${this.url}/${id}`);
   }
@@ -35,6 +40,14 @@ export class ConsignmentService {
 
   findByProductName(productName: string): Observable<consignment[]> {
     return this.httpClient.get<consignment[]>(`${this.url}?product.name_like=`+productName.trim());
+  }
+
+  findByEDate(importDateString: Date): Observable<consignment[]> {
+    if (importDateString) {
+      return this.httpClient.get<consignment[]>(`${this.url}?importDate=${importDateString.toISOString}`);
+    } else {
+      return this.httpClient.get<consignment[]>(`${this.url}`);
+    }
   }
 
   findByDate(importDate: Date, exportDate: Date): Observable<consignment[]> {

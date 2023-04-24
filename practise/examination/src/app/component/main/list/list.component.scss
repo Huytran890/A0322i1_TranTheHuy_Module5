@@ -1,0 +1,78 @@
+table {
+  width: 100%;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow: auto;
+}
+
+.table-responsive td, 
+.table-responsive th {
+  max-width: 200px; /* thiết lập chiều rộng tối đa cho mỗi cột */
+  white-space: nowrap !important; /* không cho phép chữ bị xuống dòng */
+  overflow: hidden; /* ẩn phần vượt quá chiều rộng tối đa */
+  text-overflow: ellipsis; /* hiển thị dấu ba chấm (...) cho phần vượt quá chiều rộng tối đa */
+}
+
+.spinner {
+  transform: scale(2);
+}
+
+// .mat-mdc-form-field {
+//     font-size: 14px;
+//     width: 100%;
+// }
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: 0 !important;
+}
+
+.space {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+// .button-add {
+//   position: relative;
+//   right: 20px;
+// }
+
+.formSearch {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.formSearch .btn {
+  padding: 8px 10px !important;
+  border-radius: 6px;
+}
+
+.heading {
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+.heading span {
+  font-size: 3.5rem;
+  background-color: rgba(255, 165, 0, 0.2);
+  color: var(--primaryColor);
+  border-radius: 5px;
+  padding: 2px 10px;
+  margin: 0 2px;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// .heading .space-text {
+//   background: none;
+// }
