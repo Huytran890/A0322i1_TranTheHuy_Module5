@@ -1,7 +1,7 @@
 package com.example.examination_be.controller;
 
 import com.example.examination_be.model.Association;
-import com.example.examination_be.service.Impl.GroupService;
+import com.example.examination_be.service.Impl.AssociationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/api/groups")
-public class GroupController {
+@CrossOrigin(origins = "http://localhost:4200/")
+@RequestMapping("/api/associations")
+public class AssociationController {
     @Autowired
-    private GroupService groupService;
+    private AssociationService groupService;
 
     @GetMapping("/list")
     public ResponseEntity<List<Association>> getAllInstructors() {

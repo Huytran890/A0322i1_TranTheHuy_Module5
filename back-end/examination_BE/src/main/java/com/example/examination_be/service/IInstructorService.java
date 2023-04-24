@@ -1,4 +1,11 @@
-package com.example.examination_be.service.Impl;
+package com.example.examination_be.service;
 
-public class IInstructorService {
+import com.example.examination_be.model.Instructor;
+
+import java.util.List;
+
+public interface IInstructorService {
+    List<Instructor> findAll();
+
+    Instructor findById(Integer id);
 }

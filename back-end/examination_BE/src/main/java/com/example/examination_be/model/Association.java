@@ -3,7 +3,7 @@ package com.example.examination_be.model;
 import javax.persistence.*;
 
 @Entity
-public class Grouping {
+public class Association {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -12,9 +12,9 @@ public class Grouping {
 
     private String projectName;
 
-    public Grouping() {}
+    public Association() {}
 
-    public Grouping(Integer id, String groupName, String projectName) {
+    public Association(Integer id, String groupName, String projectName) {
         this.id = id;
         this.groupName = groupName;
         this.projectName = projectName;

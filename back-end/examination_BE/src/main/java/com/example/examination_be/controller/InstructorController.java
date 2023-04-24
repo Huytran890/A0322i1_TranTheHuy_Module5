@@ -1,21 +1,37 @@
 package com.example.examination_be.controller;
 
+import com.example.examination_be.model.Instructor;
 import com.example.examination_be.service.IInstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:4200")
+import java.util.List;
+
 @RestController
+@CrossOrigin(origins = "http://localhost:4200/")
 @RequestMapping("/api/instructors")
-public class InstructorRepository {
+public class InstructorController {
 
     @Autowired
     private IInstructorService instructorService;
 
     @GetMapping("/list")
-    public ResponseEntity<>
+    public ResponseEntity<List<Instructor>> getAllInstructors() {
+        List<Instructor> instructors = instructorService.findAll();
+        if (!instructors.isEmpty()) {
+            return new ResponseEntity<>(instructors, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+//    @GetMapping("/search/{id}")
+//    public ResponseEntity<Instructor> getInstructorById(@PathVariable Integer id) {
+//        Instructor instructor = this.instructorService.findById(id);
+//        if (instructor == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 }
